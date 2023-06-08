@@ -2,7 +2,7 @@ import React from "react";
 
 export const Navigation = ({ links }) => {
   return (
-    <nav style={{ position: "fixed", top: "1rem", right: "1rem" }}>
+    <nav style={{ position: "sticky", top: "1rem", right: "1rem" }}>
       <ul>
         <li role="list" dir="rtl">
           <details role="list">
