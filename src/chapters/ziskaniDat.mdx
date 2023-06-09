@@ -1,0 +1,150 @@
+<article id="ziskaniDat">
+  <header style={{marginBottom: "1rem"}}>
+    ##  Získání Dat 🔍
+  </header>
+
+Pro naši analýzu a vývoj predikčního modelu jsme se rozhodli využít data z webové
+stránky [HowLongToBeat.com](https://howlongtobeat.com/), což je populární herní komunita,
+která se zaměřuje na informace o délce hraní různých videoher. Hráči mohou na stránce
+zadat jednak své hodnocení, tak i jak dlouho jim trvalo hru dohrát.
+
+<figure>
+  <img src="/hltb.jpg" alt="Záznam hry The Witcher 3 na HowLongToBeat.com" />
+  <figcaption>Záznam hry The Witcher 3 na HowLongToBeat.com.[Zdroj](https://howlongtobeat.com/game/10270)</figcaption>
+</figure>
+
+Tato data však nejsou přímo stahovatelná, proto bylo potřeba vytvořit pro sběr dat scraper. Stránka používá pořadová čísla jako identifikátory her v URL adrese a naše manuální prozkoumání ukázalo, že pořadová čísla těchto identifikátorů pro nejnovější hry ke dni 20.&nbsp;března&nbsp;2023 se pohybovala okolo 90&nbsp;000. Proto jsme nastavili náš scraper tak, aby prošel pořadová čísla od 0 do 100&nbsp;000.
+
+Scraper byl implementován pomocí knihovny Beautiful Soup 4 pro jazyk Python. Stránka HowLongToBeat.com má však zabezpečení proti scrapingu, které umožňuje z jedné IP adresy dlouhodobě stáhnout data maximálně jednou za 1 až 2 sekundy. Abychom se přizpůsobili těmto omezením, nastavili jsme náš scraper tak, aby mezi jednotlivými požadavky čekal náhodnou dobu mezi 1 a 2 sekundami.
+
+Sběr dat trval přibližně 2 dny, během kterých jsme nasbírali 34&nbsp;656 záznamů o hrách. Z těchto záznamů mělo 10&nbsp;782 kompletní sadu údajů, které jsme chtěli získat.
+
+<details>
+  <summary>Sbírané údaje ✅</summary>
+  <table>
+  <thead>
+    <tr>
+      <th>klíč</th>
+      <th>popis údaje</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>scrape_id</td>
+      <td>identifikátor hry v URL</td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>název hry</td>
+    </tr>
+    <tr>
+      <td>rating</td>
+      <td>hodnocení</td>
+    </tr>
+    <tr>
+      <td>beat_count</td>
+      <td>počet hráčů, kteří hru hodnotili</td>
+    </tr>
+    <tr>
+      <td>platforms</td>
+      <td>platformy</td>
+    </tr>
+    <tr>
+      <td>genres</td>
+      <td>žánry</td>
+    </tr>
+    <tr>
+      <td>developer</td>
+      <td>vývojář</td>
+    </tr>
+    <tr>
+      <td>publisher</td>
+      <td>vydavatel</td>
+    </tr>
+    <tr>
+      <td>na</td>
+      <td>datum vydání v Severní Americe</td>
+    </tr>
+    <tr>
+      <td>eu</td>
+      <td>datum vydání v Evropě</td>
+    </tr>
+    <tr>
+      <td>jp</td>
+      <td>datum vydání v Japonsku</td>
+    </tr>
+    <tr>
+      <td>main_story_average</td>
+      <td>průměrný čas strávený hraním hlavní příběhové linie</td>
+    </tr>
+    <tr>
+      <td>main_story_median</td>
+      <td>medián času stráveného hraním hlavní příběhové linie</td>
+    </tr>
+    <tr>
+      <td>main_story_rushed</td>
+      <td>nejkratší čas strávený hraním hlavní příběhové linie</td>
+    </tr>
+    <tr>
+      <td>main_story_leisure</td>
+      <td>nejdelší čas strávený hraním hlavní příběhové linie</td>
+    </tr>
+    <tr>
+      <td>main_+_extras_average</td>
+      <td>
+        průměrný čas strávený hraním hlavní příběhové linie plus extra obsah
+      </td>
+    </tr>
+    <tr>
+      <td>main_+_extras_median</td>
+      <td>
+        medián času stráveného hraním hlavní příběhové linie plus extra obsah
+      </td>
+    </tr>
+    <tr>
+      <td>main_+_extras_rushed</td>
+      <td>
+        nejkratší čas strávený hraním hlavní příběhové linie plus extra obsah
+      </td>
+    </tr>
+    <tr>
+      <td>main_+_extras_leisure</td>
+      <td>
+        nejdelší čas strávený hraním hlavní příběhové linie plus extra obsah
+      </td>
+    </tr>
+
+    <tr>
+      <td>completionist_average</td>
+      <td>
+        průměrný čas strávený hraním hry pro hráče, kteří chtěli dosáhnout 100%
+        dokončení
+      </td>
+    </tr>
+    <tr>
+      <td>completionist_median</td>
+      <td>
+        medián času stráveného hraním hry pro hráče, kteří chtěli dosáhnout 100%
+        dokončení
+      </td>
+    </tr>
+    <tr>
+      <td>completionist_rushed</td>
+      <td>
+        nejkratší čas strávený hraním hry pro hráče, kteří chtěli dosáhnout 100%
+        dokončení
+      </td>
+    </tr>
+    <tr>
+      <td>completionist_leisure</td>
+      <td>
+        nejdelší čas strávený hraním hry pro hráče, kteří chtěli dosáhnout 100%
+        dokončení
+      </td>
+    </tr>
+
+  </tbody>
+</table>
+</details>
+
+</article>
