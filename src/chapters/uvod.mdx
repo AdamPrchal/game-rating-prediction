@@ -1,12 +1,15 @@
+import { ImageWithCaption } from "../components/ImageWithCaption";
+
 <article id="uvod">
   <header style={{marginBottom: "1rem"}}>
     ##  Úvod a definice rozhodovacího problému 🎯
   </header>
 
-<figure>
-  <img src="/npr_games.jpg" alt="Hry z roku 2022" />
-  <figcaption>Hry z roku 2022. [Zdroj](https://www.npr.org/2022/12/16/1143120382/2022-best-games)</figcaption>
-</figure>
+<ImageWithCaption
+  src="/npr_games.jpg"
+  caption="Hry z roku 2022."
+  source={"https://www.npr.org/2022/12/16/1143120382/2022-best-games"}
+/>
 
 V dnešní době se videoherní průmysl neustále vyvíjí a zároveň se stává stále konkurenceschopnějším. Počet dostupných her na trhu je obrovský a rychle roste, což umožňuje hráčům velkou škálu výběru. Jakožto vývojář nebo vydavatel her je důležité mít možnost předpovědět, jak dobře se má hra setká s přijetím hráčů a případně provést kroky pro co největší potenciální úspěšnost.
 V tomto projektu se chceme zaměřit na předpovědění hodnocení videoher. Naším rozhodovacím problémem je tedy otázka: "Jaké vlastnosti hry ovlivňují její hodnocení a jak můžeme využít těchto informací k předpovědi hodnocení budoucích her?"
