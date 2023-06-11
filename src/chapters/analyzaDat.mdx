@@ -1,0 +1,82 @@
+import { ImageWithCaption } from "../components/ImageWithCaption";
+
+<article id="analyzaDat">
+    <header style={{marginBottom: "1rem"}}>
+        ##  Analýza jednotlivých sloupců 🎯
+    </header>
+
+    <h2>Hodnocení her</h2>
+    Nejdůležitější sloupec, na který se budeme v naší analýze zaměřovat je sloupec "rating" neboli hodnocení hry, protože chceme na základě zadaných parametrů odhadnout, jak bude nová hra hodnocena.
+    Histogram zobrazuje počet her a jejich jednotlivé hodnocení.
+    Jak je z histogramu vidět, tak naše data hodnocení mají dle statistiky přibližně normální (Gaussovo) rozdělení
+    <ImageWithCaption
+        src="/histogramHodnoceni.png"
+        caption="Histogram celkového hodnocení jednotlivých her"
+        source={""}
+    />
+
+
+
+    <h2>Beat count</h2>
+    Na následujícím histogramu vidíme počet her a počet hráčů, kteří ji hodnotili (napsali ke hře hodnocení).
+    Z histogramu vidíme, že nejmenší počet napsaných recenzí v rozmezí 30-80 má nejvíce her z našeho datasetu (4 149).
+    Poté narůstá počet hodnocení ale klesá počet her.
+
+    <ImageWithCaption
+        src="/histogramBeatCount.png"
+        caption="Histogram počtu hodnocení jednotlivých her"
+        source={""}
+    />
+
+    <h2>Platformy</h2>
+
+    Sloupec platforms obsahuje informace o tom, kde si hru můžete zahrát – například PC, Xbox, Nintento Switch apod.
+    Přehled počtu her a jednotlivých platforem zobrazuje následující graf.
+    Poznámka - jedna hra může být vydána na více platformách.
+
+    <ImageWithCaption
+        src="/platformyGraf.png"
+        caption="Přehled platforem, na kterých se dají hry hrát"
+        source={""}
+    />
+
+
+    <center>
+        <ImageWithCaption
+            src="/platformyPrehled1.png"
+            caption="Detailní rozpis počtu her na jednotlivých platformách 1. část"
+            source={""}
+        />
+
+        <ImageWithCaption
+            src="/platformyPrehled2.png"
+            caption="Detailní rozpis počtu her na jednotlivých platformách 2. část"
+            source={""}
+        />
+
+    </center>
+
+    <h2>Žánry</h2>
+    V našem datasetu máme následující rozložení žánrů:
+
+    - Action (13.8 %)
+    - Adventure (13 %)
+    - Ostatní (nazařazené) (11.4 %)
+    - Role-Playing (7.57 %)
+    - Shooter (5.38 %)
+    - Third-Person (5.18 %)
+    - First-Person (4.58 %)
+
+    Jelikož existuje nespočet dalších žánrů, které mají poměrné nízké procentuální zastoupení v našem datasetu, tak jen pro představu uvádíme následující koláčový graf.
+
+    <ImageWithCaption
+        src="/zanry.png"
+        caption="Zastoupení jednotlivých žánrů v našem datasetu"
+        source={""}
+    />
+
+
+
+
+
+</article>
