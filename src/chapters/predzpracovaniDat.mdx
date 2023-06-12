@@ -17,8 +17,6 @@ import { ImageWithCaption } from "../components/ImageWithCaption";
     - main + extras polled
     - completionist polled
     - all playstyles polled
-    - developers
-    - publishers
     - aliases
     - alias
 
@@ -30,7 +28,7 @@ import { ImageWithCaption } from "../components/ImageWithCaption";
     - Vydání hry (na, eu, jp). Tyto hodnoty byly převedeny na datový typ datetime.
     - Developer a Publisher. Pokud chyběl jen jeden údaj, tak byl doplněn údajem druhým (pokud chyběl Developer, tak se nahradil Publisherem a naopak)
 
-    Posledním zpracováním byly časové hodnoty. Pokud název sloupce neobsahoval slovo medián tak se celý odstranil, a pokud ho obsahoval, tak se tento sloupec (respektive jeho hodnota) převedla na datový typ timedelta.
+    Posledním zpracováním byly časové hodnoty. Při prvních pokusech trénování modelu se ukázalo, že model byl spolehlivější, pokud se místo všech dob dohrání použili pouze median hodnoty. Pokud tedy název časového sloupce neobsahoval slovo medián tak se celý odstranil, a pokud ho obsahoval, tak se tento sloupec (respektive jeho hodnota) převedla na datový typ timedelta.
 
     Ještě bylo třeba vyplnit prázdné hodnoty ve sloupcích, které obsahují podřetězec "main_story", "main_+_extras", "completionist" nebo "all_playstyles". Tyto hodnoty se doplnily průměrnou hodnotou sloupce.
 
@@ -49,7 +47,7 @@ import { ImageWithCaption } from "../components/ImageWithCaption";
 
     ### One hot encoding - vytvoření 2 skupin hodnocení her
 
-    Přidali jsme do našeho datasetu dva nové sloupce **"developer_count"** a **"publisher_count"** - tedy počty her, které byli vyvinuty každým vývojářem a počty her publikované každým vydavatelem.
+    Přidali jsme do našeho datasetu dva nové sloupce **"developer_count"** a **"publisher_count"** - tedy počty her, které byli vyvinuty každým vývojářem a počty her vydané každým vydavatelem.
 
     Poté jsme použili algoritmus **KMeans** a použili pro něj jako vstupní data jednorměrné pole, které obsahovalo počet her vyvinutých každým vývojářem.
 
@@ -57,12 +55,7 @@ import { ImageWithCaption } from "../components/ImageWithCaption";
 
     Tento **stejný postup jsme zopakovali i pro sloupec "publisher_count"**. A opět z metody lokte vyplynulo, že optimální počet skupin je roven 3.
 
-    Poté jsme si určili hranice rozdělení:
-    - **treshold1 = 33.33**
-    - **treshold2 = 66.66**
-    - A také průměrnou hranici hry **"avg_game_treshold"** na hodnotu 70.
-
-    **Vytvořili jsme funkci "assign_group", která nám přiřazuje hodnotu do skupiny na základě hranic a průměrné hodnoty avg_game_treshold**. Tuto funkci jsme aplikovali na sloupec hodnocení (rating) a výsledky byly uloženy do nového sloupce "rating_group"
+    Z prvních pokusů o trénování vyplynulo, že nejideálnější bude vzhledem k našemu datasetu a k obecnému vnímaní hodnocení her použít místo konkrétních hodnocení pravdivostní hodnotu pro to, zda je hodnocení nadprůměrně či nikoliv. Tuto hranici jsme stanovili na hodnotě 70. Na základě těchto hranic jsme udělali nový sloupec "rating_group", kde byly pravdivostní hodnoty uloženy.
 
     Na závěr této části jsme si nechali zobrazit graf znázorňující počet her pro konkrétní skupiny (skupina 0 a skupina 1)
 
@@ -96,9 +89,11 @@ import { ImageWithCaption } from "../components/ImageWithCaption";
     - na_month (měsíc)
     - na_day (den)
 
+    V rámci průběžného testování se ukázalo, že více dat vydání nepřínesl žádné zlepšení, proto jsme použili pouze datum vydaní pro Severní Ameriku.
+
     ### Zpracování časových údajů
     Časové údaje byly převedeny na minuty (počet minut pro dokončení jednotlivé hry).
-    Odlehlé hodnoty byly z datasetu odstraněny. Práh jsme stanovili na hodnotu 3.
+    Odlehlé hodnoty byly z datasetu odstraněny.
 
     Nechali jsme vypočítat hodnoty **z-score (standardizované skóre)** pro vybrané sloupce a filtrované hodnoty jsme uložili do "filtered_data", který obsahuje pouze neodlehlé hodnoty. Podrobnější postup výpočtu z-score je uveden ve zdrojovém kódu našeho projektu.
 
