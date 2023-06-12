@@ -94,15 +94,21 @@ import { ImageWithCaption } from "../components/ImageWithCaption";
     - na_month (měsíc)
     - na_day (den)
 
-    ### Zpracování časových údajů a jejich normalizace
+    ### Zpracování časových údajů
     Časové údaje byly převedeny na minuty (počet minut pro dokončení jednotlivé hry).
     Odlehlé hodnoty byly z datasetu odstraněny. Práh jsme stanovili na hodnotu 3.
 
     Nechali jsme vypočítat hodnoty z-score (standardizované skóre) pro vybrané sloupce a filtrované hodnoty jsme uložili do "filtered_data", který obsahuje pouze neodlehlé hodnoty. Podrobnější postup výpočtu z-score je uveden ve zdrojovém kódu našeho projektu.
 
-    Jednotlivé sloupce byly následně znormalizovány pomocí MinMaxScaler.
+    ### Normalizace dat
+    V poslední fázi "předzpracování" byla provedena normalizace dat v těchto sloupcích:
 
+    - main_story_median
+    - main_+extras_median
+    - completionist_median
+    - beat_count
 
+    Jednotlivé sloupce byly znormalizovány pomocí MinMaxScaler. Tato normalizace slouží ke změně rozsahu hodnot proměnných tak, aby byly ve stejném měřítku (nebo intervalu). V našem případě to bylo převedení na hodnoty v rozmezí 0 až 1.
 
 
 
