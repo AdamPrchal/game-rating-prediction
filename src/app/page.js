@@ -1,6 +1,7 @@
 import Uvod from "../chapters/uvod.mdx";
 import ZiskaniDat from "../chapters/ziskaniDat.mdx";
 import AnalyzaDat from "../chapters/analyzaDat.mdx";
+import PredzpracovaniDat from "../chapters/predzpracovaniDat.mdx";
 import { ScrollProgress } from "../components/ScrollProgress";
 import { Navigation } from "../components/Navigation";
 
@@ -17,6 +18,8 @@ export default function Home() {
           { id: "#uvod", label: "Úvod a definice rozhodovacího problému" },
           { id: "#ziskaniDat", label: "Získání dat" },
             {id: "#analyzaDat", label:" Analýza dat"},
+            {id: "#predzpracovaniDat", label:" Předzpracování dat"},
+
         ]}
       />
       <main className="container" style={{ maxWidth: "70ch" }}>
@@ -28,6 +31,7 @@ export default function Home() {
         <Uvod />
         <ZiskaniDat />
           <AnalyzaDat />
+          <PredzpracovaniDat />
       </main>
     </>
   );

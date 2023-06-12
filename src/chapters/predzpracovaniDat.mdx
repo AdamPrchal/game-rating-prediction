@@ -1,0 +1,60 @@
+import { ImageWithCaption } from "../components/ImageWithCaption";
+
+<article id="predzpracovaniDat">
+    <header style={{marginBottom: "1rem"}}>
+        ##  Předzpracování vstupních dat 🎯
+    </header>
+
+    Ještě před zahájením trénování našich modelů je nutné aby data byla ve správném (validním) formátu.
+    Tedy je nutné provést očištění dat.
+
+    Postupovali jsme následnovně:
+
+    Nejdříve jsme odstranili sloupce, které nejsou pro náš problém relevantní. Jednalo se o sloupce:
+
+    - scrape id
+    - main story polled
+    - main + extras polled
+    - completionist polled
+    - all playstyles polled
+    - developers
+    - publishers
+    - aliases
+    - alias
+
+    Poté jsme odstranili řádky ve kterých byla prázdná (NaN / nulová) hodnota ve sloupích Genres a Platforms
+
+    Také bylo nutné "přepočítat" hodnotu rating (hodnocení), protože tato hodnota byla desetinné číslo v intervalu 0 až 1, proto jsme hodnotu vynásobili 100 a získali jsme její hodnocení v procentech (v celých číslech).
+
+    Následně jsme opět odstranili prázdné (chybějící) záznamy postupně ve sloupcích:
+    - Vydání hry (na, eu, jp). Tyto hodnoty byly převedeny na datový typ datetime.
+    - Developer a Publisher. Pokud chyběl jen jeden údaj, tak byl doplněn údajem druhým (pokud chyběl Developer, tak se nahradil Publisherem a naopak)
+
+    Posledním zpracováním byly časové hodnoty. Pokud název sloupce neobsahoval slovo medián tak se celý odstranil, a pokud ho obsahoval, tak se tento sloupec (respektive jeho hodnota) převedla na datový typ timedelta.
+
+    Ještě bylo třeba vyplnit prázdné hodnoty ve sloupcích, které obsahují podřetězec "main_story", "main_+_extras", "completionist" nebo "all_playstyles". Tyto hodnoty se doplnily průměrnou hodnotou sloupce.
+
+    Na obrázku níže je vidět, že ani jeden sloupec neobsahuje nulovou nebo prázdnou hodnotu.
+
+
+    <center>
+        <ImageWithCaption
+            src="/pocetPrazdnychHodnoty.jpg"
+            caption="Výpis příkazu, ktreý zjištoval počet prázdných (nenulových) hodnot v datasetu"
+            source={""}
+        />
+
+    </center>
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
