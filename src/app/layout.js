@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" data-theme="dark" style={{ scrollBehavior: "smooth" }}>
+    <html lang="en" data-theme="light" style={{ scrollBehavior: "smooth" }}>
       <head>
         <link
           rel="apple-touch-icon"

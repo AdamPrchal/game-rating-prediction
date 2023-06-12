@@ -1,0 +1,44 @@
+import { ImageWithCaption } from "../components/ImageWithCaption";
+
+<article id="trenovaniModelu">
+  <header style={{marginBottom: "1rem"}}>
+    ##  Trénování modelů 🔍
+  </header>
+
+### Rozdělení dat
+
+Těsně před trenováním jsme dataset rozdělili na trénovací a testovací set. Rozdělení bylo provedeno tak, aby trénovací set tvořil 80&nbsp;% z celkového datasetu a zbylých 20&nbsp;% bylo vyhrazeno pro testování. Toto rozdělení jsme zvolili, jelikož při průběžném manuálním testování vracely trénované modely lepší výsledky.
+
+### Trénování modelů
+
+Každý z modelů (RandomForestClassifier, XGBClassifier a SVC) byl natrénován na stejné trénovací sadě dat. Pro každý model byly nastaveny hyperparametry za použití metody **GridSearchCV**, která automaticky prohledává prostor hyperparametrů a hledá tu nejlepší kombinaci pro dosažení nejlepšího výkonu modelu. Výsledné nejlepší kombinace hyperparametrů pro každý model nám vyšli následující:
+
+**RandomForestClassifier**
+
+- `max_depth` (30): Maximální hloubka stromu. Toto je maximální počet úrovní, které může strom mít. Omezení hloubky stromu by mělo pomoci předejít přeučení.
+
+- `n_estimators` (120): Počet stromů. Větší počet stromů by měl přinést lepší výsledky, ale také zvyšuje výpočetní nároky.
+
+**XGBClassifier**
+
+- `learning_rate` (0.1): Rychlost, jakou model aktualizuje své předpovědi v každé iteraci. Malá hodnota přináší lepší výsledky, ale obnaší i vyšší nároky na systém.
+
+- `max_depth` (30): Maximální hloubka stromu. Stejně jako u RandomForestClassifier.
+
+- `n_estimators` (100): Počet stromů, které se mají vytvořit při učení modelu. Stejně jako u RandomForestClassifier.
+
+**SVC**
+
+- `C` (10): Penalizace za špatně klasifikované body. Čím větší `C`, tím tvrdší je model na špatně klasifikované body.
+
+- `gamma` (0.01): Jak moc daleko bodů od sebe se model podívá, když se rozhoduje, jak je klasifikovat. Menší `gamma` znamená, že model se podívá dále.
+
+### Hodnocení modelů
+
+Po natrénování modelů byly použity různé metriky pro zhodnocení jejich výkonu na testovací sadě. Nástroj scikit-learn obsahuje funkce, které nám umožnili tyto metriky snadno získat. Šlo konkrétně o metriky jako Accuracy, F-score, ROC AUC Score a Log Loss pro každý z modelů. Tyto metriky nám poskytly informace o tom, jak dobře se každý model naučil předpovídat cílovou proměnnou.
+
+5. **Výběr nejlepšího modelu**: Na základě výsledků hodnocení modelů byl jako nejlepší model vybrán RandomForestClassifier. Tento model dosáhl nejvyšší přesnosti (Accuracy) a nejvyššího F-score mezi všemi testovanými modely.
+
+6. **Interpretace výsledků**: Analýza výsledků ukázala, že RandomForestClassifier nejlépe předpovídá cílovou proměnnou. Tento model vykazoval nejvyšší míru přesnosti a F-score, což naznačuje, že má dobré výsledky jak v přesnosti předpovědi, tak v rovnováze mezi přesností a úplností. Na druhou stranu, SVC dosáhl nejnižšího výkonu mezi testovanými modely, což ukazuje, že tento model by mohl být pro tento konkrétní úkol méně vhodný. Výsledky ukazují, že výběr správného modelu a jeho hyperparametrů může mít velký vliv na výsledný výkon při predikci cílové proměnné.
+
+</article>

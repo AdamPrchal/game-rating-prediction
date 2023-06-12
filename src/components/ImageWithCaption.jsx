@@ -5,7 +5,7 @@ export const ImageWithCaption = ({ src, caption, source }) => {
     <figure>
       <img src={src} alt={caption} />
       <figcaption>
-        {caption} <a href={source}>Zdroj</a>
+        {caption} {source && <a href={source}>Zdroj</a>}
       </figcaption>
     </figure>
   );
