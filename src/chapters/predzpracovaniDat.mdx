@@ -45,6 +45,62 @@ import { ImageWithCaption } from "../components/ImageWithCaption";
         />
 
     </center>
+    
+        ### One hot encoding - vytvoření 2 skupin hodnocení her
+
+    Přidali jsme do našeho datasetu dva nové sloupce "developer_count" a "publisher_count" - tedy počty her, které byli vyvinuty každým vývojářem a počty her publikované každým vydavatelem.
+
+    Poté jsme použili algoritmus KMeans a použili pro něj jako vstupní data jednorměrné pole, které obsahovalo počet her vyvinutých každým vývojářem.
+    Následně se provedl výpočet metody lokte (elbow method) pro určení optimálního počtu skupin. V našem případě vyplynulo, že optimální počet skupin jsou 3.
+
+    Tento stejný postup jsme zopakovali i pro sloupec "publisher_count". A opět z metody lokte vyplynulo, že optimální počet skupin je roven 3.
+
+    Poté jsme si určili hranice rozdělení:
+    - treshold1 = 33.33
+    - treshold2 = 66.66
+
+    A také průměrnou hranici hry (avg_game_treshold) na hodnotu 70.
+
+    Vytvořili jsme funkci "assign_group", která nám přiřazuje hodnotu do skupiny na základě hranic a průměrné hodnoty avg_game_treshold. Tuto funkci jsme aplikovali na sloupec hodnocení (rating) a výsledky byly uloženy do nového sloupce "rating_group"
+    Na závěr této části jsme si nechali zobrazit graf znázorňující počet her pro konkrétní skupiny (skupina 0 a skupina 1)
+
+    <center>
+        <ImageWithCaption
+            src="/zastoupeniHodnoceniHer.png"
+            caption="Graf zastoupení hodnocení her"
+            source={""}
+        />
+
+    </center>
+
+    Poznámka: Metodu One hot encoding jsme chtěli použít také i pro sloupec platforms. Jenomže zde vznikl problém, že by náš dataset měl více než 1 000 sloupců a výsledek trénování modelu by byl o mnohem horší.
+
+
+
+    ### Vytvoření nových sloupců "is_PC" a "is_Console"
+    Tyto sloupce byly vytvořeny protože opět v našem datasetu existovalo mnoho typů platforem, na kterých se hry daly hrát. Rozhodli jsme se, že tyto platformy zredukujeme v podstatě na 2 sloupce (is_PC, is_Console).
+    Rozdělení proběhlo následovně:
+     - Pokud sloupec platforms obsahoval hodnotu PC, tak se do sloupce is_PC vložila hodnota 1, pokud hodnotu PC neobsahoval, tak se přiřadila hodnota 0
+     - Pokud sloupec platforms NEobsahoval hodnotu PC, tak se do sloupce is_Console vložila hodnota 1, jinak se vložila hodnota 0.
+
+    ### Zpracování sloupce "genres"
+    Následně jsme "vyfiltrovali" i sloupec, který obsahoval seznam žánrů. Z analýzy jednotlivých četnosti žánrů vyplynulo, že v našem datasetu existuje spoustu žánrů, které mají poměrné malé zastoupení. Pro další zpracování jsme brali v potaz pouze žánry které byly zastoupeny alespoň v počtu 50+ .
+
+    Jednotlivé seznamy žánrů pak byly převedeny na binární formu (pomocí MultiLabelBinarizer), kde každý žánr má vlastní sloupec s hodnou 1 nebo 0, která je závislá na tom, zda daný žánr se v seznamu vyskytuje nebo ne.
+
+    ### Rozdělení sloupce "na" - datum vydání hry
+    Datum vydání hry ("na") byl rozdělen na nové 3 sloupce a to z původního formátu DD.MM.YYYY na:
+    - na_year (rok)
+    - na_month (měsíc)
+    - na_day (den)
+
+    ### Zpracování časových údajů a jejich normalizace
+    Časové údaje byly převedeny na minuty (počet minut pro dokončení jednotlivé hry).
+    Odlehlé hodnoty byly z datasetu odstraněny. Práh jsme stanovili na hodnotu 3.
+
+    Nechali jsme vypočítat hodnoty z-score (standardizované skóre) pro vybrané sloupce a filtrované hodnoty jsme uložili do "filtered_data", který obsahuje pouze neodlehlé hodnoty. Podrobnější postup výpočtu z-score je uveden ve zdrojovém kódu našeho projektu.
+
+    Jednotlivé sloupce byly následně znormalizovány pomocí MinMaxScaler.
 
 
 
