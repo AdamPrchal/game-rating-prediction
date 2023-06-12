@@ -33,12 +33,4 @@ Každý z modelů (RandomForestClassifier, XGBClassifier a SVC) byl natrénován
 
 - `gamma` (0.01): Jak moc daleko bodů od sebe se model podívá, když se rozhoduje, jak je klasifikovat. Menší `gamma` znamená, že model se podívá dále.
 
-### Hodnocení modelů
-
-Po natrénování modelů byly použity různé metriky pro zhodnocení jejich výkonu na testovací sadě. Nástroj scikit-learn obsahuje funkce, které nám umožnili tyto metriky snadno získat. Šlo konkrétně o metriky jako Accuracy, F-score, ROC AUC Score a Log Loss pro každý z modelů. Tyto metriky nám poskytly informace o tom, jak dobře se každý model naučil předpovídat cílovou proměnnou.
-
-5. **Výběr nejlepšího modelu**: Na základě výsledků hodnocení modelů byl jako nejlepší model vybrán RandomForestClassifier. Tento model dosáhl nejvyšší přesnosti (Accuracy) a nejvyššího F-score mezi všemi testovanými modely.
-
-6. **Interpretace výsledků**: Analýza výsledků ukázala, že RandomForestClassifier nejlépe předpovídá cílovou proměnnou. Tento model vykazoval nejvyšší míru přesnosti a F-score, což naznačuje, že má dobré výsledky jak v přesnosti předpovědi, tak v rovnováze mezi přesností a úplností. Na druhou stranu, SVC dosáhl nejnižšího výkonu mezi testovanými modely, což ukazuje, že tento model by mohl být pro tento konkrétní úkol méně vhodný. Výsledky ukazují, že výběr správného modelu a jeho hyperparametrů může mít velký vliv na výsledný výkon při predikci cílové proměnné.
-
 </article>

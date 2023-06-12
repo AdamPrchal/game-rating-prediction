@@ -14,7 +14,7 @@ import { ImageWithCaption } from "../components/ImageWithCaption";
 V dnešní době se videoherní průmysl neustále vyvíjí a zároveň se stává stále konkurenceschopnějším. Počet dostupných her na trhu je obrovský a rychle roste, což umožňuje hráčům velkou škálu výběru. Jakožto vývojář nebo vydavatel her je důležité mít možnost předpovědět, jak dobře se má hra setká s přijetím hráčů a případně provést kroky pro co největší potenciální úspěšnost.
 V tomto projektu se chceme zaměřit na předpovědění hodnocení videoher. Naším rozhodovacím problémem je tedy otázka: "Jaké vlastnosti hry ovlivňují její hodnocení a jak můžeme využít těchto informací k předpovědi hodnocení budoucích her?"
 
-Cílem našeho projektu je vytvořit model, který dokáže předpovědět hodnocení hry na základě dostupných parametrů, jako jsou:
+Cílem našeho projektu je vytvořit model, který na základě dostupných parametrů předpoví, zda bude hra nadprůměrná či podprůměrná – tedy zda bude mít hodnocení 70 % nebo méně, nebo více než 70 %. To bude rozhodnuto na základě dostupných parametrů, jako jsou:
 
 - žánry hry,
 - platformy, na kterých je hra dostupná,
@@ -22,8 +22,6 @@ Cílem našeho projektu je vytvořit model, který dokáže předpovědět hodno
 - vydavatelé,
 - a další.
 
-Výsledný model by mohl umožnit například vydavatelům a vývojářům her lépe pochopit, jaké faktory nejvíce ovlivňují úspěch hry u hráčů.
-
-Budeme postupovat tak, že nejprve provedeme sběr a analýzu dat ze webové stránky [HowLongToBeat.com](https://howlongtobeat.com/), poté vybereme a natrénujeme model a nakonec vyhodnotíme jeho výkon a posoudíme výsledky.
+Budeme postupovat tak, že nejprve provedeme sběr a analýzu dat ze webové stránky [HowLongToBeat.com](https://howlongtobeat.com/), data zpracujeme. Poté vybereme a natrénujeme 3 různé modely a nakonec vyhodnotíme jejich výkon a posoudíme, který je pro tuto úlohu nejvhodnější.
 
 </article>

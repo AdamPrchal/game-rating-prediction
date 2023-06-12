@@ -8,9 +8,79 @@ import { ImageWithCaption } from "../components/ImageWithCaption";
 Po natrénování modelů byly použity různé metriky pro zhodnocení jejich výkonu na testovací sadě. Nástroj scikit-learn obsahuje funkce, které nám umožnili tyto metriky snadno získat. Šlo konkrétně o metriky jako Accuracy, F-score, ROC AUC Score a Log Loss pro každý z modelů. Tyto metriky nám poskytly informace o tom, jak dobře se každý model naučil předpovídat cílovou proměnnou.
 
 ### Výběr nejlepšího modelu
+
 Na základě výsledků hodnocení modelů byl jako nejlepší model vybrán **RandomForestClassifier**. Tento model dosáhl nejvyšší přesnosti (Accuracy) a nejvyššího F-score mezi všemi testovanými modely.
 
 ### Interpretace výsledků
-Analýza výsledků ukázala, že RandomForestClassifier nejlépe předpovídá cílovou proměnnou. Tento model vykazoval nejvyšší míru přesnosti a F-score, což naznačuje, že má dobré výsledky jak v přesnosti předpovědi, tak v rovnováze mezi přesností a úplností. Na druhou stranu, SVC dosáhl nejnižšího výkonu mezi testovanými modely, což ukazuje, že tento model by mohl být pro tento konkrétní úkol méně vhodný. Výsledky ukazují, že výběr správného modelu a jeho hyperparametrů může mít velký vliv na výsledný výkon při predikci cílové proměnné.
+
+Analýza výsledků ukázala, že RandomForestClassifier nejlépe předpovídá cílovou proměnnou. Tento model vykazoval nejvyšší míru přesnosti a F-score, což naznačuje, že má dobré výsledky jak v přesnosti předpovědi, tak v rovnováze mezi přesností a úplností. Na druhou stranu, SVC dosáhl nejnižšího výkonu mezi testovanými modely. Nicméně, rozdíly mezi výsledky testovaných modelů není příliš velký.
+
+### Shrnutí výsledků modelů
+
+V průběhu našeho projektu jsme použili různé techniky pro úpravu a přípravu datasetu. Přesto jsme z našeho datasetu nebyli schopní získat lepších výsledků než z počáteční Přesnosti (Accuracy) 0.43 na 0.74 v případě Random Forest Classifier. To může částečně souviset s naší omezenou zkušeností a znalostmi v oblasti strojového učení. Nicméně, je také možné, že předpovídání tak komplexního cíle, jakým je hodnocení hry, může vyžadovat více informací (cena hry, úroveň grafické prezentace, marketing hry). Přestože jsme se snažili maximalizovat výkonnost našich modelů v rámci dostupných dat a našich schopností, možná by bylo možné dosáhnout lepších výsledků za použití pokročilejších technik, nebo s více nebo odlišnými daty.
+
+<details>
+  <summary>Popis metrik 📝</summary>
+
+- **Přesnost (Accuracy):** Jak často model uhádl správnou třídu.
+
+- **F-score:** Měří, jak dobře model zvládá nacházet správné výsledky a jak dobře se vyhne špatným.
+
+- **ROC AUC score:** Ukazuje, jak dobře model dokáže rozlišit mezi třídami (v našem případě nad třídami nadprůměrná hra a podprůměrná hra)
+
+- **Log Loss:** Hodnota ukazující, jak moc se model mýlil - čím nižší, tím lépe.
+
+- **Matice záměn (Confusion Matrix):** Tabulka, která ukazuje, kolik předpovědí model správně nebo nesprávně klasifikoval. Postupně True Positive, True Negative, False Positive, False Negative.
+</details>
+**1. Random Forest Classifier**
+- Nejlepší nalezené hyperparametry: max_depth=30, n_estimators=120
+- Přesnost (Accuracy): 0.741
+- F-score: 0.740
+- ROC AUC score: 0.740
+- Log Loss: 0.530
+- Matice záměn (Confusion Matrix):
+
+```
+[[752 238]
+ [273 706]]
+```
+
+Random Forest Classifier s nejlepšími hyperparametry dosahuje slušné přesnosti a F-score téměř 75%. Tento model se v našem případě ukázal jako nejlepší.
+
+---
+
+**2. XGBClassifier**
+
+- Nejlepší nalezené hyperparametry: learning_rate=0.1, max_depth=30, n_estimators=100
+- Přesnost (Accuracy): 0.714
+- F-score: 0.714
+- ROC AUC score: 0.714
+- Log Loss: 0.599
+- Matice záměn (Confusion Matrix):
+
+```
+[[739 251]
+ [312 667]]
+```
+
+XGBClassifier s nejlepšími hyperparametry má téměř stejnou přesnost a F-score jako Random Forest Classifier. Jeho výsledky jsou srovnatelné s Random Forest modelem.
+
+---
+
+**3. SVC**
+
+- Nejlepší nalezené hyperparametry: C=10, gamma=0.01
+- Přesnost (Accuracy): 0.699
+- F-score: 0.696
+- ROC AUC score: 0.698
+- Log Loss: 0.574
+- Matice záměn (Confusion Matrix):
+
+```
+[[778 212]
+ [381 598]]
+```
+
+SVC dosahuje nižšího score než předchozí dva modely, ale stále poskytuje slušnou přesnost a F-score.
 
 </article>

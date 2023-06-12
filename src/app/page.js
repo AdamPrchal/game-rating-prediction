@@ -4,6 +4,7 @@ import AnalyzaDat from "../chapters/analyzaDat.mdx";
 import VyberModelu from "../chapters/vyberModelu.mdx";
 import TrenovaniModelu from "../chapters/trenovaniModelu.mdx";
 import PredzpracovaniDat from "../chapters/predzpracovaniDat.mdx";
+import Vysledky from "../chapters/vysledkyAVyhodnoceni.mdx";
 import { ScrollProgress } from "../components/ScrollProgress";
 import { Navigation } from "../components/Navigation";
 
@@ -19,10 +20,11 @@ export default function Home() {
         links={[
           { id: "#uvod", label: "Úvod a definice rozhodovacího problému" },
           { id: "#ziskaniDat", label: "Získání dat" },
-            {id: "#analyzaDat", label:"Analýza dat"},
-            {id: "#predzpracovaniDat", label:"Předzpracování dat"},
-            {id: "#vyberModelu", label:"Výběr modelů"},
-            {id: "#trenovaniModelu", label:"Trénování modelů"},
+          { id: "#analyzaDat", label: "Analýza dat" },
+          { id: "#predzpracovaniDat", label: "Předzpracování dat" },
+          { id: "#vyberModelu", label: "Výběr modelů" },
+          { id: "#trenovaniModelu", label: "Trénování modelů" },
+          { id: "#vysledkyAVyhodnoceni", label: "Výsledky a Vyhodnocení" },
 
         ]}
       />
@@ -34,10 +36,11 @@ export default function Home() {
 
         <Uvod />
         <ZiskaniDat />
-          <AnalyzaDat />
-          <PredzpracovaniDat />
-          <VyberModelu />
-          <TrenovaniModelu />
+        <AnalyzaDat />
+        <PredzpracovaniDat />
+        <VyberModelu />
+        <TrenovaniModelu />
+        <Vysledky />
       </main>
     </>
   );
