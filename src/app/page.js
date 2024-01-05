@@ -28,7 +28,7 @@ export default function Home() {
 
         ]}
       />
-      <main className="container" style={{ maxWidth: "70ch" }}>
+      <main className="container" style={{ maxWidth: "80ch" }}>
         <hgroup>
           <h1>Strojové učení – Predikce hodnocení videoher</h1>
           <h3>Tomáš Lacina, Adam Prchal</h3>
