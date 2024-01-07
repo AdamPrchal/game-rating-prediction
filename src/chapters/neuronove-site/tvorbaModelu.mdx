@@ -1,0 +1,45 @@
+import { ImageWithCaption } from "../../components/ImageWithCaption";
+
+<article id="tvorbaModelu">
+  <header style={{marginBottom: "1rem"}}>
+    ## Tvorba modelu neuronové sítě 🔍
+  </header>
+
+Hlavním cílem našeho projektu bylo vytvoření efektivního modelu pro binární klasifikaci. Pro dosažení tohoto cíle jsme prošli procesem výběru, experimentování a ladění různých architektur neuronových sítí. Zde je popis našeho přístupu a důvodů, proč jsme se rozhodli pro konkrétní konfiguraci modelu.
+
+**Výběr typu neuronové sítě**:
+Začali jsme s rozhodnutím, že použijeme plně propojené (fully connected) neuronové sítě, které jsou vhodné pro naši úlohu binární klasifikace. Plně propojené sítě jsou efektivní pro zpracování tabulkových dat, což odpovídá povaze našeho datasetu.
+
+**Experimentování s architekturou**:
+Proces výběru správné architektury zahrnoval experimentování s různým počtem skrytých vrstev a neuronů. Původně jsme začali s třemi vrstvami (64, 32, 1), ale nakonec jsme se skončili na pětivrstvém modelu s vrstvami o velikostech 352, 256, 128, 64, a 1 neuronu. Tato konfigurace nám poskytla nejlepší výsledky ve smyslu přesnosti a minimalizace přetrénování.
+
+**Výběr aktivačních funkcí**:
+Pro aktivační funkce jsme zvolili ReLU (Rectified Linear Unit) pro skryté vrstvy, což je standardní volba pro mnoho aplikací neuronových sítí. Pro výstupní vrstvu byla použita sigmoidní funkce, která je vhodná pro binární klasifikaci.
+
+**Optimalizace a ztrátová funkce**:
+Jako optimalizační algoritmus jsme zvolili Adam, který se ukázal být efektivnější než SGD (Stochastic Gradient Descent) v našem případě. Pro ztrátovou funkci jsme použili binární cross-entropy.
+
+**Ladění hyperparametrů**:
+Proces ladění zahrnoval nastavení hyperparametrů, jako je velikost batchů, počet epoch a learning rate. Experimentovali jsme s různými hodnotami pro každý z těchto parametrů, aby bylo dosaženo optimálního výkonu modelu.
+
+**Parametry modelu pro binární klasifikaci**:
+- `Optimalizační algoritmus:` adam
+
+- `Learning rate:` 0.00112
+
+- `Batch size:` 32
+
+- `Počet vrstev:` 5
+
+- `Počet epoch:` 10
+
+
+ <center>
+        <ImageWithCaption
+            src="/neuronove-site/model.png"
+            caption="Vizualizace modelu pro binární klasifikaci"
+            source={""}
+        />
+    </center>
+
+</article>

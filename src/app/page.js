@@ -1,46 +1,48 @@
-import Uvod from "../chapters/uvod.mdx";
-import ZiskaniDat from "../chapters/ziskaniDat.mdx";
-import AnalyzaDat from "../chapters/analyzaDat.mdx";
-import VyberModelu from "../chapters/vyberModelu.mdx";
-import TrenovaniModelu from "../chapters/trenovaniModelu.mdx";
-import PredzpracovaniDat from "../chapters/predzpracovaniDat.mdx";
-import Vysledky from "../chapters/vysledkyAVyhodnoceni.mdx";
-import { ScrollProgress } from "../components/ScrollProgress";
-import { Navigation } from "../components/Navigation";
+import Image from "next/image";
+import Link from "next/link";
 
 export const metadata = {
-  title: "Strojové učení – Predikce hodnocení videoher",
+  title: "Predikce hodnocení videoher",
 };
 
 export default function Home() {
   return (
     <>
-      <ScrollProgress />
-      <Navigation
-        links={[
-          { id: "#uvod", label: "Úvod a definice rozhodovacího problému" },
-          { id: "#ziskaniDat", label: "Získání dat" },
-          { id: "#analyzaDat", label: "Analýza dat" },
-          { id: "#predzpracovaniDat", label: "Předzpracování dat" },
-          { id: "#vyberModelu", label: "Výběr modelů" },
-          { id: "#trenovaniModelu", label: "Trénování modelů" },
-          { id: "#vysledkyAVyhodnoceni", label: "Výsledky a Vyhodnocení" },
-
-        ]}
-      />
       <main className="container" style={{ maxWidth: "80ch" }}>
         <hgroup>
-          <h1>Strojové učení – Predikce hodnocení videoher</h1>
+          <h1>Predikce hodnocení videoher</h1>
           <h3>Tomáš Lacina, Adam Prchal</h3>
         </hgroup>
-
-        <Uvod />
-        <ZiskaniDat />
-        <AnalyzaDat />
-        <PredzpracovaniDat />
-        <VyberModelu />
-        <TrenovaniModelu />
-        <Vysledky />
+        <div className="menu">
+          <div className="menu__item">
+            <Image
+              src={"/strojove-uceni.png"}
+              width={200}
+              height={200}
+              style={{ marginBottom: "1rem" }}
+              className="menu__image"
+            />
+            <Link href={"/strojove-uceni"}>
+              <button href="#" role="button" class="secondary outline">
+                Strojové učení ➜
+              </button>
+            </Link>
+          </div>
+          <div className="menu__item">
+            <Image
+              src={"/neuronove-site.png"}
+              width={200}
+              height={200}
+              style={{ marginBottom: "1rem" }}
+              className="menu__image"
+            />
+            <Link href={"/neuronove-site"}>
+              <button href="#" role="button" class="secondary outline">
+                Neuronové sítě ➜
+              </button>
+            </Link>
+          </div>
+        </div>
       </main>
     </>
   );

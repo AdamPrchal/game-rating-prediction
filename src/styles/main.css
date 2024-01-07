@@ -1,0 +1,13 @@
+.menu {
+  display: flex;
+  gap: 2rem;
+}
+
+.menu__item {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu__image {
+  border-radius: 0.25rem;
+}

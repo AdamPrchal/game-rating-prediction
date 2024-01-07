@@ -1,0 +1,53 @@
+import { ImageWithCaption } from "../../components/ImageWithCaption";
+
+<article id="predzpracovaniDat">
+    <header style={{marginBottom: "1rem"}}>
+        ## Předzpracování vstupních dat 👨‍💻
+    </header>
+
+    V tomto projektu jsme upravili naše přístupy k předzpracování dat, aby lépe odpovídaly potřebám neuronových sítí a zvýšily přesnost modelu.
+
+    ### Odstranění nepotřebných sloupců a řádků
+
+    Začali jsme odstraněním nepotřebných sloupců, jako v minulém projektu, a řádků s chybějícími hodnotami v klíčových sloupcích.
+
+    ### Zpracování hodnocení
+
+    Na rozdíl od předchozího projektu jsme hodnocení her ponechali v desetinné formě, protože jsme zjistili, že to nemá vliv na výkon modelu.
+
+    ### Datum vydání
+    Pro datum vydání jsme tentokrát zvolili nejdřívější datum z dostupných dat vydání a převedli jsme je na rok, měsíc a den.
+
+    ### One hot encoding
+
+    Pro platformy a žánry jsme použili metodu one hot encoding, aby bylo možné efektivněji zpracovat tyto kategorické proměnné.
+
+    ### Kategorizace vývojářů a vydavatelů
+
+    Vytvořili jsme sloupce 'developer_size' a 'publisher_size', kde jsme pomocí KMeans a elbow metody určili optimální počet skupin pro kategorizaci. Zjistili jsme, že nejlepší je použít 2 clustery pro vydavatele a 3 pro vývojáře.
+    <center>
+        <ImageWithCaption
+            src="/neuronove-site/vydavatel.png"
+            caption=""
+            source={""}
+        />
+    </center>
+    <center>
+        <ImageWithCaption
+            src="/neuronove-site/vyvojar.png"
+            caption=""
+            source={""}
+        />
+    </center>
+
+
+    ### Normalizace dat
+
+    Pro normalizaci jsme tentokrát zvolili **StandardScaler** místo MinMaxScaleru, což se ukázalo jako efektivnější pro náš model.
+
+    Tyto změny ve způsobu předzpracování dat nám pomohly překonat problémy s náhodnou klasifikací, které jsme zaznamenali při použití stejných metod jako v předchozím projektu.
+
+   ### Rozdělení dat
+
+   Těsně před trenováním jsme dataset rozdělili na trénovací a testovací set. Rozdělení bylo provedeno tak, aby trénovací set tvořil 80&nbsp;% z celkového datasetu a zbylých 20&nbsp;% bylo vyhrazeno pro testování. Toto rozdělení jsme zvolili, jelikož při průběžném manuálním testování vracely trénované modely lepší výsledky.
+</article>

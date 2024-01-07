@@ -1,4 +1,5 @@
 import "../styles/pico.min.css";
+import "../styles/main.css";
 
 export const metadata = {
   title: "Strojové učení – Predikce hodnocení videoher",
