@@ -1,4 +1,4 @@
-import { ImageWithCaption } from "../components/ImageWithCaption";
+
 
 <article id="analyzaDat">
     <header style={{marginBottom: "1rem"}}>
@@ -9,7 +9,7 @@ import { ImageWithCaption } from "../components/ImageWithCaption";
     Nejdůležitější sloupec, na který se budeme v naší analýze zaměřovat je sloupec "rating" neboli hodnocení hry, protože chceme na základě zadaných parametrů odhadnout, jak bude nová hra hodnocena.
     Histogram zobrazuje počet her a jejich jednotlivé hodnocení.
     Jak je z histogramu vidět, tak naše data hodnocení mají dle statistiky přibližně normální (Gaussovo) rozdělení
-    <ImageWithCaption
+    <ImageWithCaption lang="cs"
         src="/histogramHodnoceni.png"
         caption="Histogram celkového hodnocení jednotlivých her"
         source={""}
@@ -22,7 +22,7 @@ import { ImageWithCaption } from "../components/ImageWithCaption";
     Z histogramu vidíme, že nejmenší počet napsaných recenzí v rozmezí 30-80 má nejvíce her z našeho datasetu (4 149).
     Poté narůstá počet hodnocení ale klesá počet her.
 
-    <ImageWithCaption
+    <ImageWithCaption lang="cs"
         src="/histogramBeatCount.png"
         caption="Histogram počtu hodnocení jednotlivých her"
         source={""}
@@ -34,7 +34,7 @@ import { ImageWithCaption } from "../components/ImageWithCaption";
     Přehled počtu her a jednotlivých platforem zobrazuje následující graf.
     Poznámka - jedna hra může být vydána na více platformách.
 
-    <ImageWithCaption
+    <ImageWithCaption lang="cs"
         src="/platformyGraf.png"
         caption="Přehled platforem, na kterých se dají hry hrát"
         source={""}
@@ -42,13 +42,13 @@ import { ImageWithCaption } from "../components/ImageWithCaption";
 
 
     <center>
-        <ImageWithCaption
+        <ImageWithCaption lang="cs"
             src="/platformyPrehled1.png"
             caption="Detailní rozpis počtu her na jednotlivých platformách 1. část"
             source={""}
         />
 
-        <ImageWithCaption
+        <ImageWithCaption lang="cs"
             src="/platformyPrehled2.png"
             caption="Detailní rozpis počtu her na jednotlivých platformách 2. část"
             source={""}
@@ -69,7 +69,7 @@ import { ImageWithCaption } from "../components/ImageWithCaption";
 
     Jelikož existuje nespočet dalších žánrů, které mají poměrné nízké procentuální zastoupení v našem datasetu, tak jen pro představu uvádíme následující koláčový graf.
 
-    <ImageWithCaption
+    <ImageWithCaption lang="cs"
         src="/zanry.png"
         caption="Zastoupení jednotlivých žánrů v našem datasetu"
         source={""}

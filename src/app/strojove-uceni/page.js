@@ -1,10 +1,10 @@
-import Uvod from "../../chapters/uvod.mdx";
-import ZiskaniDat from "../../chapters/ziskaniDat.mdx";
-import AnalyzaDat from "../../chapters/analyzaDat.mdx";
-import VyberModelu from "../../chapters/vyberModelu.mdx";
-import TrenovaniModelu from "../../chapters/trenovaniModelu.mdx";
-import PredzpracovaniDat from "../../chapters/predzpracovaniDat.mdx";
-import Vysledky from "../../chapters/vysledkyAVyhodnoceni.mdx";
+import Uvod from "../../chapters/strojove-uceni/uvod.mdx";
+import ZiskaniDat from "../../chapters/strojove-uceni/ziskaniDat.mdx";
+import AnalyzaDat from "../../chapters/strojove-uceni/analyzaDat.mdx";
+import VyberModelu from "../../chapters/strojove-uceni/vyberModelu.mdx";
+import TrenovaniModelu from "../../chapters/strojove-uceni/trenovaniModelu.mdx";
+import PredzpracovaniDat from "../../chapters/strojove-uceni/predzpracovaniDat.mdx";
+import Vysledky from "../../chapters/strojove-uceni/vysledkyAVyhodnoceni.mdx";
 import { ScrollProgress } from "../../components/ScrollProgress";
 import { Navigation } from "../../components/Navigation";
 
