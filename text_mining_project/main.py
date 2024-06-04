@@ -8,9 +8,9 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 
 
-#nltk.download('punkt')
-#nltk.download('stopwords')
-#nltk.download('wordnet')
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
 
 stop_words = set(stopwords.words('english'))
 lemmatizer = WordNetLemmatizer()
@@ -64,7 +64,7 @@ worst_game_reviews = worst_game_reviews.merge(worst_game_ids, on='app_id', how='
 top_game_reviews['cleaned_review'] = top_game_reviews['review'].apply(preprocess_text)
 worst_game_reviews['cleaned_review'] = worst_game_reviews['review'].apply(preprocess_text)
 
-# Kontrola předzpracovaných dat
+## Výpis předzpracovaných dat
 print("\nPreprocessed Top Game Reviews:")
 print(top_game_reviews[['review', 'cleaned_review']].head())
 print("\nPreprocessed Worst Game Reviews:")
