@@ -35,14 +35,20 @@ def preprocess_text(text):
         return ''
 
 #funkce pro vizualizaci dat pomocí word cloud (slovní mraky)
-def plot_word_cloud(text, title):
-    wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text)
+def plot_word_cloud(text, title, max_words):
+    wordcloud = WordCloud(width=800, height=400, background_color='white', max_words=max_words).generate(text)
     plt.figure(figsize=(10, 5))
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.title(title)
     plt.axis('off')
     plt.show()
 
+# Kontrola frekvence slov a odstranění duplicit
+def get_most_common_words(text, max_words):
+    words = text.split()
+    word_counts = Counter(words)
+    most_common_words = word_counts.most_common(max_words)
+    return ' '.join([word for word, _ in most_common_words])
 
 top_game_ids = pd.read_csv('./data/top_game_app_ids.csv')
 top_game_reviews = pd.read_csv('./data/top_game_app_ids_normalized_reviews.csv')
@@ -88,7 +94,32 @@ worst_game_reviews['cleaned_review'] = worst_game_reviews['review'].apply(prepro
 top_reviews_text = ' '.join(top_game_reviews['cleaned_review'])
 worst_reviews_text = ' '.join(worst_game_reviews['cleaned_review'])
 
-# Vykreslení grafu word clouds
-plot_word_cloud(top_reviews_text, 'Top Game Reviews Word Cloud')
-plot_word_cloud(worst_reviews_text, 'Worst Game Reviews Word Cloud')
+## Vykreslení grafu word clouds
+#plot_word_cloud(top_reviews_text, 'Top Game Reviews Word Cloud')
+#plot_word_cloud(worst_reviews_text, 'Worst Game Reviews Word Cloud')
 
+top_words = top_reviews_text.split()
+worst_words = worst_reviews_text.split()
+
+top_word_counts = Counter(top_words)
+worst_word_counts = Counter(worst_words)
+
+## Zobrazení 10 nejčastějších slov
+#print("Top 10 words in top game reviews:", top_word_counts.most_common(10))
+#print("Top 10 words in worst game reviews:", worst_word_counts.most_common(10))
+
+#plot_word_cloud(' '.join(top_words), 'Top Game Reviews Word Cloud')
+#plot_word_cloud(' '.join(worst_words), 'Worst Game Reviews Word Cloud')
+
+# Získání XY nejčastějších slov -
+#TODO: doplnit proměnou na maximální počet slov !!!
+
+top_reviews_common_text = get_most_common_words(top_reviews_text, max_words=50)
+worst_reviews_common_text = get_most_common_words(worst_reviews_text, max_words=50)
+
+print(top_reviews_common_text)
+print(worst_reviews_common_text)
+
+# Vytvoření a zobrazení slovních mračen
+plot_word_cloud(top_reviews_common_text, 'Top Game Reviews Word Cloud', max_words=50)
+plot_word_cloud(worst_reviews_common_text, 'Worst Game Reviews Word Cloud', max_words=50)
