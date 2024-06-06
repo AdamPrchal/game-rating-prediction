@@ -13,6 +13,7 @@ from wordcloud import WordCloud
 
 
 from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
@@ -21,12 +22,14 @@ from sklearn.pipeline import make_pipeline
 
 
 
+
+
 matplotlib.use('TkAgg')
 
 
-nltk.download('punkt')
-nltk.download('stopwords')
-nltk.download('wordnet')
+#nltk.download('punkt')
+#nltk.download('stopwords')
+#nltk.download('wordnet')
 
 
 stop_words = set(stopwords.words('english'))
@@ -187,3 +190,31 @@ n_iter_bow = pipeline_bow.named_steps['logisticregression'].n_iter_[0]
 
 print("Accuracy with BoW and StandardScaler:", accuracy_bow)
 print("Number of iterations for BoW:", n_iter_bow)
+
+
+#TF-IDF Model
+#testování TF-IDF modelu při stejném počtu iterací
+max_iter_value=2000
+tfidf_vectorizer = TfidfVectorizer(max_features=5000)  # Omezte na top 5000 slov
+X_tfidf = tfidf_vectorizer.fit_transform(X)
+
+# Rozdělení dat na trénovací a testovací sadu
+X_train_tfidf, X_test_tfidf, y_train, y_test = train_test_split(X_tfidf, y, test_size=0.2, random_state=42)
+
+# Trénink modelu s TF-IDF bez škálování
+model_tfidf_no_scaling = LogisticRegression(max_iter=max_iter_value)
+model_tfidf_no_scaling.fit(X_train_tfidf, y_train)
+
+# Predikce a vyhodnocení
+y_pred_tfidf_no_scaling = model_tfidf_no_scaling.predict(X_test_tfidf)
+accuracy_tfidf_no_scaling = accuracy_score(y_test, y_pred_tfidf_no_scaling)
+print("Accuracy with TF-IDF without StandardScaler:", accuracy_tfidf_no_scaling)
+
+# Trénink modelu s TF-IDF a škálováním
+pipeline_tfidf = make_pipeline(StandardScaler(with_mean=False), LogisticRegression(max_iter=max_iter_value))
+pipeline_tfidf.fit(X_train_tfidf, y_train)
+
+# Predikce a vyhodnocení
+y_pred_tfidf = pipeline_tfidf.predict(X_test_tfidf)
+accuracy_tfidf = accuracy_score(y_test, y_pred_tfidf)
+print("Accuracy with TF-IDF and StandardScaler:", accuracy_tfidf)
