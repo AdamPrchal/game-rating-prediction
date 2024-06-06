@@ -2,13 +2,24 @@ import pandas as pd
 import nltk
 import string
 import matplotlib
+import matplotlib.pyplot as plt
+
 
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from collections import Counter
-import matplotlib.pyplot as plt
 from wordcloud import WordCloud
+
+
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+from sklearn.preprocessing import StandardScaler
+from sklearn.pipeline import make_pipeline
+
+
 
 matplotlib.use('TkAgg')
 
@@ -17,9 +28,14 @@ nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
 
+
 stop_words = set(stopwords.words('english'))
 lemmatizer = WordNetLemmatizer()
 
+#proměnná pro počet uníkátních slov při vykreslení grafu word-cloud
+number_of_unique_words=100
+
+#funkce na předzpracování textu
 def preprocess_text(text):
     if isinstance(text, str):
         # Převod textu na malá písmena
@@ -34,7 +50,7 @@ def preprocess_text(text):
     else:
         return ''
 
-#funkce pro vizualizaci dat pomocí word cloud (slovní mraky)
+#funkce pro vizualizaci dat pomocí grafu word cloud (slovní mraky)
 def plot_word_cloud(text, title, max_words):
     wordcloud = WordCloud(width=800, height=400, background_color='white', max_words=max_words).generate(text)
     plt.figure(figsize=(10, 5))
@@ -50,6 +66,7 @@ def get_most_common_words(text, max_words):
     most_common_words = word_counts.most_common(max_words)
     return ' '.join([word for word, _ in most_common_words])
 
+#načtení dat
 top_game_ids = pd.read_csv('./data/top_game_app_ids.csv')
 top_game_reviews = pd.read_csv('./data/top_game_app_ids_normalized_reviews.csv')
 worst_game_ids = pd.read_csv('./data/worst_game_app_ids.csv')
@@ -72,7 +89,7 @@ top_game_reviews = top_game_reviews.merge(top_game_ids, on='app_id', how='left')
 # Spojení nejhorších herních recenzí s názvy her
 worst_game_reviews = worst_game_reviews.merge(worst_game_ids, on='app_id', how='left')
 
-# Kontrola výsledných datasetů
+
 #print("\nMerged Top Game Reviews:")
 #print(top_game_reviews.head())
 #print("\nMerged Worst Game Reviews:")
@@ -83,7 +100,7 @@ worst_game_reviews = worst_game_reviews.merge(worst_game_ids, on='app_id', how='
 top_game_reviews['cleaned_review'] = top_game_reviews['review'].apply(preprocess_text)
 worst_game_reviews['cleaned_review'] = worst_game_reviews['review'].apply(preprocess_text)
 
-## Výpis předzpracovaných dat
+
 #print("\nPreprocessed Top Game Reviews:")
 #print(top_game_reviews[['review', 'cleaned_review']].head())
 #print("\nPreprocessed Worst Game Reviews:")
@@ -104,22 +121,69 @@ worst_words = worst_reviews_text.split()
 top_word_counts = Counter(top_words)
 worst_word_counts = Counter(worst_words)
 
-## Zobrazení 10 nejčastějších slov
+# Zobrazení 10 (xx) nejčastějších slov
 #print("Top 10 words in top game reviews:", top_word_counts.most_common(10))
 #print("Top 10 words in worst game reviews:", worst_word_counts.most_common(10))
 
 #plot_word_cloud(' '.join(top_words), 'Top Game Reviews Word Cloud')
 #plot_word_cloud(' '.join(worst_words), 'Worst Game Reviews Word Cloud')
 
-# Získání XY nejčastějších slov -
-#TODO: doplnit proměnou na maximální počet slov !!!
+# Získání XY nejčastějších slov
+top_reviews_common_text = get_most_common_words(top_reviews_text, max_words=number_of_unique_words)
+worst_reviews_common_text = get_most_common_words(worst_reviews_text, max_words=number_of_unique_words)
 
-top_reviews_common_text = get_most_common_words(top_reviews_text, max_words=50)
-worst_reviews_common_text = get_most_common_words(worst_reviews_text, max_words=50)
+#print(top_reviews_common_text)
+#print(worst_reviews_common_text)
 
-print(top_reviews_common_text)
-print(worst_reviews_common_text)
+# Vytvoření a zobrazení grafu word-cloud pro zadaný počet slov, nastavil jsem na 100, ale můžeme zkusit i jiné počty
+plot_word_cloud(top_reviews_common_text, 'Top Game Reviews Word Cloud', max_words=number_of_unique_words)
+plot_word_cloud(worst_reviews_common_text, 'Worst Game Reviews Word Cloud', max_words=number_of_unique_words)
 
-# Vytvoření a zobrazení slovních mračen
-plot_word_cloud(top_reviews_common_text, 'Top Game Reviews Word Cloud', max_words=50)
-plot_word_cloud(worst_reviews_common_text, 'Worst Game Reviews Word Cloud', max_words=50)
+
+#Implementace bag of Words (BoW)
+
+# Přidání sentimentálních štítků (1 pro pozitivní, 0 pro negativní)
+top_game_reviews['sentiment'] = 1
+worst_game_reviews['sentiment'] = 0
+
+# Kombinace dat
+all_reviews = pd.concat([top_game_reviews, worst_game_reviews])
+X = all_reviews['cleaned_review']
+y = all_reviews['sentiment']
+
+# Bag-of-Words model
+
+# Zvýšení počtu iterací pro logistickou regresi
+#POZNÁMKA - bez použití max_iter_value byla hodnota Accuracy 0.8974, po přidání se zvýšila na 0.91084
+# při testování jsem zjistil že bude stačit hodnota 2000, skutečný počet iterací byl cca 1963
+max_iter_value = 2000
+
+
+bow_vectorizer = CountVectorizer(max_features=5000)  # Omezte na top 5000 slov
+X_bow = bow_vectorizer.fit_transform(X)
+
+# Rozdělení dat na trénovací a testovací sadu
+X_train_bow, X_test_bow, y_train, y_test = train_test_split(X_bow, y, test_size=0.2, random_state=42)
+
+# Trénink modelu s BoW
+model_bow = LogisticRegression(max_iter=max_iter_value)
+model_bow.fit(X_train_bow, y_train)
+
+# Predikce a vyhodnocení
+y_pred_bow = model_bow.predict(X_test_bow)
+accuracy_bow = accuracy_score(y_test, y_pred_bow)
+
+print("Accuracy with BoW:", accuracy_bow)
+
+
+# Trénink modelu s BoW a škálováním
+pipeline_bow = make_pipeline(StandardScaler(with_mean=False), LogisticRegression(max_iter=max_iter_value))
+pipeline_bow.fit(X_train_bow, y_train)
+
+# Predikce a vyhodnocení
+y_pred_bow = pipeline_bow.predict(X_test_bow)
+accuracy_bow = accuracy_score(y_test, y_pred_bow)
+n_iter_bow = pipeline_bow.named_steps['logisticregression'].n_iter_[0]
+
+print("Accuracy with BoW and StandardScaler:", accuracy_bow)
+print("Number of iterations for BoW:", n_iter_bow)
