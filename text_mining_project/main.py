@@ -21,9 +21,6 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import make_pipeline
 
 
-
-
-
 matplotlib.use('TkAgg')
 
 
@@ -52,6 +49,25 @@ def preprocess_text(text):
         return ' '.join(words)
     else:
         return ''
+
+#funkce pro vytvoření slovníku
+def build_word_frequency(texts):
+    all_words = ' '.join(texts).split()
+    word_freq = Counter(all_words)
+    return word_freq
+
+#funkce pro vytvoření grafu Zipova zákona
+def plot_zipf(word_freq):
+    freqs = [freq for word, freq in word_freq.most_common()]
+    ranks = range(1, len(freqs) + 1)
+    plt.figure(figsize=(10, 6))
+    plt.plot(ranks, freqs)
+    plt.yscale('log')
+    plt.xscale('linear')
+    plt.title('Zipf\'s Law')
+    plt.xlabel('Rank')
+    plt.ylabel('Frequency')
+    plt.show()
 
 #funkce pro vizualizaci dat pomocí grafu word cloud (slovní mraky)
 def plot_word_cloud(text, title, max_words):
@@ -131,16 +147,30 @@ worst_word_counts = Counter(worst_words)
 #plot_word_cloud(' '.join(top_words), 'Top Game Reviews Word Cloud')
 #plot_word_cloud(' '.join(worst_words), 'Worst Game Reviews Word Cloud')
 
+
+# Kombinace textů
+all_reviews_text = pd.concat([top_game_reviews['cleaned_review'], worst_game_reviews['cleaned_review']])
+
+# Vytvoření slovníku frekvence slov
+word_freq = build_word_frequency(all_reviews_text)
+print("100 most frequency words (word, frequency):\n", word_freq.most_common(100))  # Zobrazení 10 nejčastějších slov
+
+#Vytvoření grafu Zipova zákona:
+plot_zipf(word_freq)
+
+
 # Získání XY nejčastějších slov
 top_reviews_common_text = get_most_common_words(top_reviews_text, max_words=number_of_unique_words)
 worst_reviews_common_text = get_most_common_words(worst_reviews_text, max_words=number_of_unique_words)
 
-#print(top_reviews_common_text)
-#print(worst_reviews_common_text)
+#print("Top reviews words \n ",top_reviews_common_text)
+#print("Worst reviews words \n ",worst_reviews_common_text)
 
 # Vytvoření a zobrazení grafu word-cloud pro zadaný počet slov, nastavil jsem na 100, ale můžeme zkusit i jiné počty
 plot_word_cloud(top_reviews_common_text, 'Top Game Reviews Word Cloud', max_words=number_of_unique_words)
 plot_word_cloud(worst_reviews_common_text, 'Worst Game Reviews Word Cloud', max_words=number_of_unique_words)
+
+
 
 
 #Implementace bag of Words (BoW)
