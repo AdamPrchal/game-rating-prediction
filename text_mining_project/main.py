@@ -3,7 +3,10 @@ import nltk
 import string
 import matplotlib
 import matplotlib.pyplot as plt
+import numpy as np
 
+#pro testovací účely - nepřineslo lepší výsledek
+#import gensim.downloader as api
 
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
@@ -13,6 +16,7 @@ from nltk.util import ngrams
 from collections import Counter
 from wordcloud import WordCloud
 
+from gensim.models import Word2Vec
 
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -36,6 +40,7 @@ lemmatizer = WordNetLemmatizer()
 
 #proměnná pro počet uníkátních slov při vykreslení grafu word-cloud
 number_of_unique_words=100
+max_iter_value = 2000
 
 #funkce na předzpracování textu
 def preprocess_text(text):
@@ -106,6 +111,23 @@ def get_most_common_words(texts, max_words=None):
     words = all_text.split()
     most_common_words = Counter(words).most_common(max_words)
     return most_common_words
+
+
+def get_word2vec_vector(text, model):
+    word_vectors = [model.wv[word] for word in text if word in model.wv]
+    if len(word_vectors) == 0:
+        return np.zeros(model.vector_size)
+    word_vectors = np.array(word_vectors).mean(axis=0)
+    return word_vectors
+
+#Pouze pro testovací účel - nepřineslo zlepšení výsledku
+#def get_glove_vector(text, model):
+#    word_vectors = [model[word] for word in text if word in model]
+#    if len(word_vectors) == 0:
+#        return np.zeros(100)
+#    word_vectors = np.array(word_vectors).mean(axis=0)
+#    return word_vectors
+
 
 #načtení dat
 top_game_ids = pd.read_csv('./data/top_game_app_ids.csv')
@@ -247,7 +269,6 @@ y = all_reviews['sentiment']
 # Zvýšení počtu iterací pro logistickou regresi
 #POZNÁMKA - bez použití max_iter_value byla hodnota Accuracy 0.8974, po přidání se zvýšila na 0.91084
 # při testování jsem zjistil že bude stačit hodnota 2000, skutečný počet iterací byl cca 1963
-max_iter_value = 2000
 
 
 bow_vectorizer = CountVectorizer(max_features=5000)  # Omezte na top 5000 slov
@@ -306,3 +327,61 @@ pipeline_tfidf.fit(X_train_tfidf, y_train)
 y_pred_tfidf = pipeline_tfidf.predict(X_test_tfidf)
 accuracy_tfidf = accuracy_score(y_test, y_pred_tfidf)
 print("Accuracy with TF-IDF and StandardScaler:", accuracy_tfidf)
+
+
+#Implementace Word-embeding
+
+# Trénování Word2Vec modelu
+word2vec_model = Word2Vec(sentences=all_reviews_text, vector_size=100, window=5, min_count=2, workers=4)
+# Trénování Word2Vec modelu s různými parametry
+#word2vec_model = Word2Vec(sentences=all_reviews_text, vector_size=200, window=10, min_count=5, workers=4)
+
+# Uložení modelu
+word2vec_model.save("word2vec.model")
+
+# Vytvoření vektorů pro recenze
+top_game_reviews['vector'] = top_game_reviews['cleaned_review'].apply(lambda x: get_word2vec_vector(x, word2vec_model))
+worst_game_reviews['vector'] = worst_game_reviews['cleaned_review'].apply(lambda x: get_word2vec_vector(x, word2vec_model))
+
+# Kombinace vektorů a sentimentů
+all_vectors = np.vstack((np.stack(top_game_reviews['vector'].values), np.stack(worst_game_reviews['vector'].values)))
+all_sentiments = np.hstack((np.ones(len(top_game_reviews)), np.zeros(len(worst_game_reviews))))
+# Rozdělení dat na trénovací a testovací sadu
+from sklearn.model_selection import train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(all_vectors, all_sentiments, test_size=0.2, random_state=42)
+
+# Trénink modelu s Word2Vec
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+model_w2v = LogisticRegression(max_iter=max_iter_value)
+model_w2v.fit(X_train, y_train)
+
+# Predikce a vyhodnocení
+y_pred_w2v = model_w2v.predict(X_test)
+accuracy_w2v = accuracy_score(y_test, y_pred_w2v)
+print("Accuracy with Word2Vec:", accuracy_w2v)
+
+
+#GloVe nepřineslo lepší výsledek. Stále se pohybujeme kolem 0.8308
+## Použití GloVe modelu pro vytvoření vektorů
+#glove_model = api.load("glove-wiki-gigaword-100")
+#top_game_reviews['vector'] = top_game_reviews['cleaned_review'].apply(lambda x: get_glove_vector(x, glove_model))
+#worst_game_reviews['vector'] = worst_game_reviews['cleaned_review'].apply(lambda x: get_glove_vector(x, glove_model))
+#
+## Kombinace vektorů a sentimentů
+#all_vectors = np.vstack((np.stack(top_game_reviews['vector'].values), np.stack(worst_game_reviews['vector'].values)))
+#all_sentiments = np.hstack((np.ones(len(top_game_reviews)), np.zeros(len(worst_game_reviews))))
+#
+## Rozdělení dat na trénovací a testovací sadu
+#X_train, X_test, y_train, y_test = train_test_split(all_vectors, all_sentiments, test_size=0.2, random_state=42)
+#
+## Trénink modelu s GloVe
+#model_glove = LogisticRegression(max_iter=1000)
+#model_glove.fit(X_train, y_train)
+#
+## Predikce a vyhodnocení
+#y_pred_glove = model_glove.predict(X_test)
+#accuracy_glove = accuracy_score(y_test, y_pred_glove)
+#print("Accuracy with GloVe:", accuracy_glove)
