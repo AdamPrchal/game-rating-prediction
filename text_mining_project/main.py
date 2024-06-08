@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
+from nltk.util import ngrams
+
 from collections import Counter
 from wordcloud import WordCloud
 
@@ -69,9 +71,23 @@ def plot_zipf(word_freq):
     plt.ylabel('Frequency')
     plt.show()
 
+#funkce pro generování n-gramu
+def generate_ngrams(text, n):
+    words = text.split()
+    return list(ngrams(words, n))
+
+def build_ngram_frequency(texts, n):
+    all_ngrams = []
+    for text in texts:
+        n_grams = generate_ngrams(text, n)
+        all_ngrams.extend(n_grams)
+    ngram_freq = Counter(all_ngrams)
+    return ngram_freq
+
 #funkce pro vizualizaci dat pomocí grafu word cloud (slovní mraky)
-def plot_word_cloud(text, title, max_words):
-    wordcloud = WordCloud(width=800, height=400, background_color='white', max_words=max_words).generate(text)
+def plot_word_cloud(word_freq, title, max_words=None):
+    wordcloud = WordCloud(width=800, height=400, background_color='white', max_words=max_words)
+    wordcloud.generate_from_frequencies(dict(word_freq))
     plt.figure(figsize=(10, 5))
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.title(title)
@@ -84,6 +100,12 @@ def get_most_common_words(text, max_words):
     word_counts = Counter(words)
     most_common_words = word_counts.most_common(max_words)
     return ' '.join([word for word, _ in most_common_words])
+
+def get_most_common_words(texts, max_words=None):
+    all_text = ' '.join(texts)
+    words = all_text.split()
+    most_common_words = Counter(words).most_common(max_words)
+    return most_common_words
 
 #načtení dat
 top_game_ids = pd.read_csv('./data/top_game_app_ids.csv')
@@ -158,16 +180,52 @@ print("100 most frequency words (word, frequency):\n", word_freq.most_common(100
 #Vytvoření grafu Zipova zákona:
 plot_zipf(word_freq)
 
+#proměnná pro počet n-gramů
+number_of_ngram = 100
 
-# Získání XY nejčastějších slov
-top_reviews_common_text = get_most_common_words(top_reviews_text, max_words=number_of_unique_words)
+# Filtrace prázdných recenzí
+top_game_reviews = top_game_reviews[top_game_reviews['cleaned_review'].str.strip() != '']
+worst_game_reviews = worst_game_reviews[worst_game_reviews['cleaned_review'].str.strip() != '']
+
+# Předzpracované texty pro nejlepší recenze
+best_reviews_text = top_game_reviews['cleaned_review'].tolist()
+worst_reviews_text = worst_game_reviews['cleaned_review'].tolist()
+
+# Vytvoření frekvenčních slovníků pro bigramy a trigramy pro nejlepší recenze
+best_bigram_freq = build_ngram_frequency(best_reviews_text, 2)
+best_trigram_freq = build_ngram_frequency(best_reviews_text, 3)
+
+# Zobrazení 10 nejčastějších bigramů a trigramů pro nejlepší recenze
+print("Top 10 Bigrams in Best Reviews:", best_bigram_freq.most_common(number_of_ngram))
+print("Top 10 Trigrams in Best Reviews:", best_trigram_freq.most_common(number_of_ngram))
+
+# Vytvoření frekvenčních slovníků pro bigramy a trigramy pro nejhorší recenze
+worst_bigram_freq = build_ngram_frequency(worst_reviews_text, 2)
+worst_trigram_freq = build_ngram_frequency(worst_reviews_text, 3)
+
+# Zobrazení 10 nejčastějších bigramů a trigramů pro nejhorší recenze
+print("Top 10 Bigrams in Worst Reviews:", worst_bigram_freq.most_common(number_of_ngram))
+print("Top 10 Trigrams in Worst Reviews:", worst_trigram_freq.most_common(number_of_ngram))
+
+
+# Vytvoření frekvenčních slovníků pro bigramy a trigramy pro všechny recenze
+all_bigram_freq = build_ngram_frequency(all_reviews_text, 2)
+all_trigram_freq = build_ngram_frequency(all_reviews_text, 3)
+
+# Zobrazení 10 nejčastějších bigramů a trigramů pro všechny recenze
+print("Top 100 Bigrams in All Reviews:", all_bigram_freq.most_common(number_of_ngram))
+print("Top 100 Trigrams in All Reviews:", all_trigram_freq.most_common(number_of_ngram))
+
+# Vytvoření seznamů nejčastějších slov pro nejlepší a nejhorší recenze
+best_reviews_common_text = get_most_common_words(best_reviews_text, max_words=number_of_unique_words)
 worst_reviews_common_text = get_most_common_words(worst_reviews_text, max_words=number_of_unique_words)
 
-#print("Top reviews words \n ",top_reviews_common_text)
-#print("Worst reviews words \n ",worst_reviews_common_text)
+# Zobrazení nejčastějších slov
+print("Most common words in best reviews:", best_reviews_common_text)
+print("Most common words in worst reviews:", worst_reviews_common_text)
 
-# Vytvoření a zobrazení grafu word-cloud pro zadaný počet slov, nastavil jsem na 100, ale můžeme zkusit i jiné počty
-plot_word_cloud(top_reviews_common_text, 'Top Game Reviews Word Cloud', max_words=number_of_unique_words)
+# Generování a zobrazení word cloud
+plot_word_cloud(best_reviews_common_text, 'Top Game Reviews Word Cloud', max_words=number_of_unique_words)
 plot_word_cloud(worst_reviews_common_text, 'Worst Game Reviews Word Cloud', max_words=number_of_unique_words)
 
 
