@@ -27,6 +27,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import make_pipeline
 
 
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+
 matplotlib.use('TkAgg')
 
 
@@ -385,3 +387,73 @@ print("Accuracy with Word2Vec:", accuracy_w2v)
 #y_pred_glove = model_glove.predict(X_test)
 #accuracy_glove = accuracy_score(y_test, y_pred_glove)
 #print("Accuracy with GloVe:", accuracy_glove)
+
+
+#Analýza sentimentu:
+
+
+# Inicializace VADER analyzátoru
+analyzer = SentimentIntensityAnalyzer()
+
+def analyze_sentiment(text):
+    vs = analyzer.polarity_scores(text)
+    return vs['compound']
+
+# Analýza sentimentu pro nejlepší a nejhorší recenze
+top_game_reviews['sentiment'] = top_game_reviews['cleaned_review'].apply(analyze_sentiment)
+worst_game_reviews['sentiment'] = worst_game_reviews['cleaned_review'].apply(analyze_sentiment)
+
+# Výpočet průměrného sentimentu
+average_top_sentiment = top_game_reviews['sentiment'].mean()
+average_worst_sentiment = worst_game_reviews['sentiment'].mean()
+
+print("Average sentiment for top game reviews:", average_top_sentiment)
+print("Average sentiment for worst game reviews:", average_worst_sentiment)
+
+# Vizualizace sentimentu
+import matplotlib.pyplot as plt
+
+plt.hist(top_game_reviews['sentiment'], bins=20, alpha=0.7, label='Top Reviews')
+plt.hist(worst_game_reviews['sentiment'], bins=20, alpha=0.7, label='Worst Reviews')
+plt.legend(loc='upper right')
+plt.title('Sentiment Distribution of Game Reviews')
+plt.xlabel('Sentiment Score')
+plt.ylabel('Frequency')
+plt.show()
+
+
+# Kategorizace sentimentu
+def categorize_sentiment(score):
+    if score < -0.5:
+        return 'Very Negative'
+    elif -0.5 <= score < 0:
+        return 'Negative'
+    elif score == 0:
+        return 'Neutral'
+    elif 0 < score <= 0.5:
+        return 'Positive'
+    else:
+        return 'Very Positive'
+
+top_game_reviews['sentiment_category'] = top_game_reviews['sentiment'].apply(categorize_sentiment)
+worst_game_reviews['sentiment_category'] = worst_game_reviews['sentiment'].apply(categorize_sentiment)
+
+# Výpočet distribuce sentimentu
+top_sentiment_distribution = top_game_reviews['sentiment_category'].value_counts(normalize=True)
+worst_sentiment_distribution = worst_game_reviews['sentiment_category'].value_counts(normalize=True)
+
+print("Sentiment distribution for top game reviews:\n", top_sentiment_distribution)
+print("Sentiment distribution for worst game reviews:\n", worst_sentiment_distribution)
+
+# Vizualizace distribuce sentimentu
+fig, ax = plt.subplots(1, 2, figsize=(15, 7), sharey=True)
+
+top_sentiment_distribution.plot(kind='bar', ax=ax[0], color='skyblue', title='Top Game Reviews Sentiment Distribution')
+worst_sentiment_distribution.plot(kind='bar', ax=ax[1], color='salmon', title='Worst Game Reviews Sentiment Distribution')
+
+ax[0].set_ylabel('Proportion')
+ax[0].set_xlabel('Sentiment Category')
+ax[1].set_xlabel('Sentiment Category')
+
+plt.tight_layout()
+plt.show()

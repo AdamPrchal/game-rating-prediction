@@ -15,4 +15,5 @@ Accuracy with TF-IDF without StandardScaler: 0.8892168779301962
 Accuracy with TF-IDF and StandardScaler: 0.9300804537824854
 Accuracy with Word2Vec: 0.8334780343809689
 
-Process finished with exit code 0
+Average sentiment for top game reviews: 0.34179039246511117
+Average sentiment for worst game reviews: 0.26149900390080805
