@@ -1,0 +1,2 @@
+Report: https://game-rating-prediction.vercel.app/text-mining
+Data: https://drive.google.com/drive/folders/1sbPggk58vm3Af8GlwiGd9WtjjL1IbvCw?usp=sharing

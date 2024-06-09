@@ -10,7 +10,7 @@ import { ScrollProgress } from "../../components/ScrollProgress";
 import { Navigation } from "../../components/Navigation";
 
 export const metadata = {
-  title: "Neuronové sítě – Predikce hodnocení videoher",
+  title: "Text mining – Game reviews analysis",
 };
 
 export default function Home() {

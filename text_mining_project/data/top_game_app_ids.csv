@@ -1,127 +1,201 @@
-scrape_id,game_name,match_name,app_id
-72067,Half-Life: Alyx,Half-Life: Alyx,546560
-66630,Persona 5 Royal,Persona 5 Royal,1687950
-33660,The Witcher 3: Wild Hunt - Blood and Wine,The Witcher 3: Wild Hunt - Blood and Wine,378648
-10270,The Witcher 3: Wild Hunt,The Witcher 3: Wild Hunt,292030
-27100,Red Dead Redemption 2,Red Dead Redemption 2,1174180
-68151,Elden Ring,ELDEN RING,1245620
-1705,Chrono Trigger,CHRONO TRIGGER,613830
-38050,God of War,God of War,1593500
-2224,Dark Souls,Derp Souls,2143170
-84851,Mass Effect Legendary Edition,Mass Effect™ Legendary Edition,1328670
-57335,Disco Elysium,Disco Elysium,632470
-7231,Portal 2,Portal 2,620
-26286,Hollow Knight,Hollow Knight,367520
-8523,Silent Hill 2,SILENT HILL 2,2124490
-25074,Half-Life 2: Update,Half-Life 2: Update,290930
-62941,Hades,Hade,552160
-43056,Yakuza 0,Yakuza 0,638970
-26803,Dark Souls III,DARK SOULS™ III,374320
-95927,Dead Space,Dead Space,1693980
-5699,Mass Effect 2,Mass Effect 2,24999
-30003,The Witcher 3: Wild Hunt - Hearts of Stone,The Witcher 3: Wild Hunt - Hearts of Stone ,378649
-57527,Outer Wilds,Outer Wilds,753640
-9207,Steins;Gate,STEINS;GATE,412830
-3505,Final Fantasy IX,FINAL FANTASY IX,377840
-3521,Final Fantasy VII,FINAL FANTASY VII,39140
-39525,Divinity: Original Sin II,Divinity: Original Sin 2,435150
-7093,Planescape: Torment,Planescape Torment,205180
-56677,Dark Souls: Remastered,DARK SOULS™: REMASTERED,570940
-7720,Resident Evil 4,Resident Evil 4,2050650
-17455,Factorio,Factorio,427520
-4248,Half-Life 2,Half-Life 2,220
-38029,Nier: Automata,NieR:Automata™,524220
-3519,Final Fantasy VI,FINAL FANTASY VII,39140
-85624,OMORI,Mori,1874500
-9150,StarCraft,STALCRAFT,1818450
-6064,Minecraft,Tilecraft,2164880
-9111,Star Wars: Knights of the Old Republic,STAR WARS™ Knights of the Old Republic™,32370
-42818,Celeste,Celeste,504230
-2767,Dragon Age: Origins - Ultimate Edition,Dragon Age: Origins - Ultimate Edition,47810
-57479,Resident Evil 2,Resident Evil 0,339340
-3916,Ghost Trick: Phantom Detective,Ghost Trick: Phantom Detective,1967430
-7717,Resident Evil,Resident Evil,304240
-7718,Resident Evil 2,Resident Evil 0,339340
-61882,Return of the Obra Dinn,Return of the Obra Dinn,653530
-61442,Psychonauts 2,Psychonauts 2,607080
-21680,Cuphead,Cuphead,268910
-3525,Final Fantasy X,FINAL FANTASY IX,377840
-4064,Grand Theft Auto V,Grand Theft Auto V,362003
-2512,Diablo II,Diablo® IV,2344520
-19265,Ori and the Blind Forest,Ori and the Blind Forest,261570
-3339,Fallout 2,Fallout 2,38410
-9548,System Shock 2,System Shock 2,238210
-34716,Stardew Valley,Stardew Valley,413150
-14996,The Elder Scrolls V: Skyrim - Special Edition,The Elder Scrolls V: Skyrim Special Edition,489830
-3351,Fallout: New Vegas,Fallout: New Vegas,22380
-42837,Shovel Knight: Specter of Torment,Shovel Knight: Specter of Torment,589510
-882,Batman: Arkham City,Batman: Arkham City™,57400
-4251,Half-Life 2: Episode Two,Half-Life 2: Episode Two,420
-7230,Portal,Portal,400
-30385,Undertale,Undertale,391540
-39508,Dragon Quest XI: Echoes of an Elusive Age,DRAGON QUEST® XI: Echoes of an Elusive Age™,742120
-28431,Final Fantasy XIV: Heavensward,FINAL FANTASY XIV: Heavensward,359480
-92446,Lost Judgment,Lost Judgment,2058190
-9705,Terraria,Terraria,105600
-55663,The Legend of Heroes: Trails of Cold Steel III,The Legend of Heroes: Trails of Cold Steel II,748490
-39002,Ys VIII: Lacrimosa of Dana,Ys VIII: Lacrimosa of Dana,579180
-38052,Forza Horizon 3,Forza Horizon 5,1551360
-6725,ŌKAMI,KAMI,272040
-5843,Mega Man X,Mega Man 11,742300
-9859,The Elder Scrolls V: Skyrim,The Elder Scrolls V: Skyrim,72850
-88760,Neon White,Neon White,1533420
-41323,Zero Escape: The Nonary Games,Zero Escape: The Nonary Games,477740
-93948,Forza Horizon 5,Forza Horizon 5,1551360
-11963,Batman: Arkham City GOTY,Batman: Arkham City GOTY,200260
-12655,Rayman Legends,Rayman Legends,242550
-2489,Deus Ex: Human Revolution,Deus Ex: Human Revolution,28050
-49620,Yakuza Kiwami 2,Yakuza Kiwami 2,927380
-93457,Death Stranding: Director's Cut,DEATH STRANDING DIRECTOR'S CUT,1850570
-80102,Returnal,Returnal™,1649240
-20855,Danganronpa 2: Goodbye Despair,Danganronpa 2: Goodbye Despair,413420
-9782,The Binding of Isaac: Rebirth,The Binding of Isaac: Rebirth,250900
-50829,DUSK,DUSK,519860
-36755,Ori and the Blind Forest: Definitive Edition,Ori and the Blind Forest: Definitive Edition,387290
-9822,The Curse of Monkey Island,The Curse of Monkey Island,730820
-5707,Mass Effect 3,Mass Effect 2,24999
-881,Batman: Arkham Asylum,Batman: Arkham Asylum,35010
-22530,The Talos Principle,The Talos Principle,257510
-83169,Monster Hunter Rise,MONSTER HUNTER RISE,1446780
-57514,Devil May Cry 5,Devil May Cry 5,601150
-9850,The Elder Scrolls III: Morrowind,The Elder Scrolls III: Morrowind,22320
-2708,Doom,DOOM,379720
-78213,Tony Hawk's Pro Skater 1 + 2,Tony Hawk's™ Pro Skater™ 1 + 2,2395210
-10890,Vampire: The Masquerade - Bloodlines,Vampire: The Masquerade - Bloodlines,2600
-10492,Tony Hawk's Pro Skater 2,Tony Hawk's Pro Skater HD,207210
-1068,BioShock Infinite,BioShock Infinite,8870
-11397,XCOM: Enemy Unknown,XCOM: Enemy Unknown,200510
-1065,BioShock,BioShock,7670
-23740,Subnautica,Subnautica,264710
-93960,Tinykin,Tinykin,1599020
-14013,The Wolf Among Us,The Wolf Among Us,250320
-42418,SUPERHOT VR,SUPERHOT VR,617830
-88750,Triangle Strategy,TRIANGLE STRATEGY,1850510
-16449,Final Fantasy X/X-2 HD Remaster,FINAL FANTASY X/X-2 HD Remaster,359870
-4247,Half-Life,Half-Life,70
-60754,Judgment,Judgment,2058180
-10011,The Legend of Heroes: Trails in the Sky,The Legend of Heroes: Trails in the Sky,251150
-55661,Forza Horizon 4,Forza Horizon 5,1551360
-5698,Mass Effect,Kiss Effect,2288480
-51390,Slay the Spire,Slay the Spire,646570
-5517,Mafia,Mafia,40990
-43941,Finding Paradise,Finding Paradise,337340
-10053,The Longest Journey,The Longest Journey,6310
-2333,Dead Space,Dead Space,1693980
-4024,Gothic,GOTHEL,2381640
-60176,The Messenger,The Passenger,2162160
-36582,OneShot,OneShot,420530
-7980,Rome: Total War,Rome: Total War,4760
-8510,Sid Meier's Civilization V,Sid Meier's Civilization V,50100
-25099,VA-11 Hall-A: Cyberpunk Bartender Action,VA-11 Hall-A: Cyberpunk Bartender Action,447530
-8833,South Park: The Stick of Truth,South Park™: The Stick of Truth™,213670
-3378,Far Cry 3,Far Cry 6,2369390
-651,Assassin's Creed II,Assassin's Creed II,33230
-10461,Tom Clancy's Splinter Cell: Chaos Theory,Tom Clancy's Splinter Cell: Chaos Theory,13570
-22804,Tales from the Borderlands,Tales from the Borderlands,330830
-21702,Life Is Strange,Life is Strange™,319630
-14286,Deus Ex: Human Revolution - Director's Cut,Deus Ex: Human Revolution - Director's Cut,238010
+game_name,app_id
+Vampire Survivors,1794680
+HoloCure - Save the Fans!,2420510
+Pizza Tower,2231450
+Lethal Company,1966720
+Cats Hidden in Jingle Jam,2608050
+VPet-Simulator,1920960
+Cats Hidden in Paris,2313250
+Resident Evil 4,2050650
+Papa's Freezeria Deluxe,2291760
+Entropy : Zero 2,1583720
+Stray,1332010
+Baldur's Gate 3,1086940
+DAVE THE DIVER,1868140
+Volcano Princess,1669980
+Sheepy: A Short Adventure,1568400
+Chants of Sennaar,1931770
+Crab Champions,774801
+Brotato,1942280
+Neon White,1533420
+Pineapple on pizza,2263010
+Steam Engine Simulator,2381620
+PowerWash Simulator,1290000
+Placid Plastic Duck Simulator,1999360
+Bomb Rush Cyberfunk,1353230
+Balatro,2379780
+Hi-Fi RUSH,1817230
+SANABI,1562700
+Persona 5 Royal,1687950
+Wobbledogs,1424330
+God of War,1593500
+An Arcade Full of Cats,2368470
+The Case of the Golden Idol,1677770
+A Castle Full of Cats,2070550
+Lil Gator Game,1586800
+20 Small Mazes,2570630
+The Murder of Sonic the Hedgehog,2324650
+Patrick's Parabox,1260520
+The Coffin of Andy and Leyley,2378900
+The WereCleaner,2795000
+东北之夏,2121360
+CULTIC,1684930
+A Date with Death,2415010
+魔女的夜宴,2458530
+LIZARDS MUST DIE,2532550
+"Please, Touch The Artwork 2",2600140
+Ib,1901370
+Trombone Champ,1059990
+A Building Full of Cats,1969080
+Outcore: Desktop Adventure,1275670
+Murders on the Yangtze River,1746030
+Juice Galaxy,1708150
+I Wani Hug that Gator!,1895350
+Underground Blossom,2291850
+Paper Lily - Chapter 1,2220360
+The Looker,1985690
+Lost in Play,1328840
+Arrow a Row,2495980
+Slay the Princess,1989270
+Monument Valley: Panoramic Edition,1927720
+Dorfromantik,1455840
+SIGNALIS,1262350
+Marvel’s Spider-Man Remastered,1817070
+Half-Life 2: VR Mod,658920
+VillageRhapsody,2109460
+Stacklands,1948280
+The Hungry Lamb: Traveling in the Late Ming Dynasty,2593370
+Bloody Hell,2056220
+Thronefall,2239150
+Pseudoregalia,2365810
+Fear & Hunger 2: Termina,2171440
+巫兎 - KANNAGI USAGI -,2551500
+Café Stella and the Reaper's Butterflies,1829980
+Handshakes,2171690
+Monster Prom 3: Monster Roadtrip,1665190
+Your Only Move Is HUSTLE,2212330
+BABBDI,2240530
+Teardown,1167630
+The Planet Crafter,1284190
+Halls of Torment,2218750
+Crow Country,1996010
+Ghost Trick: Phantom Detective,1967430
+Tiny Rogues,2088570
+Dungeon Munchies,799640
+DREDGE,1562430
+A Space for the Unbound,1201270
+候鸟,1765350
+Outpath: First Journey,2237980
+Like a Dragon Gaiden: The Man Who Erased His Name,2375550
+Sucker for Love: First Date,1574270
+WITCH ON THE HOLY NIGHT,2052410
+100 Asian Cats,2667970
+Ticy Adventure Club,2135690
+ENDER MAGNOLIA: Bloom in the Mist,2725260
+Bugsnax,674140
+Sticky Business,2303350
+Bopl Battle,1686940
+Class of '09: The Re-Up,2318310
+Minami Lane,2678990
+REFLEXIA Prototype ver.,1997680
+月に寄りそう乙女の作法,1776970
+ASTLIBRA Revision,1718570
+MULLET MADJACK,2111190
+At Home Alone Final,1740100
+SuchArt: Genius Artist Simulator,1293180
+Abiotic Factor,427410
+Metal: Hellsinger,1061910
+Psychopomp,2771670
+Cult of the Lamb,1313140
+I commissioned some bees 0,2250060
+FreshWomen - Season 1,1350650
+Downfall - A Slay the Spire Fan Expansion,1865780
+Tinykin,1599020
+DORONKO WANKO,2512840
+HROT,824600
+Grimhook,2667430
+In Stars And Time,1677310
+PlateUp!,1599600
+No Case Should Remain Unsolved,2676840
+Chop Goblins,1935660
+Spirit City: Lofi Sessions,2113850
+Beacon Pines,1269640
+ANIMAL WELL,813230
+Touhou Hero of Ice Fairy,1955830
+Rabbit and Steel,2132850
+Nightmare Kart,2930160
+Anomaly Agent,2378620
+Rusty's Retirement,2666510
+Indigo Park: Chapter 1,2504480
+Kaiju Princess,1732180
+Winter Memories,2495450
+Portal: Revolution,601360
+我的小鲨鱼,2758540
+Voidigo,1304680
+Will You Snail?,1115050
+Dwarf Fortress,975370
+Content Warning,2881650
+NEEDY STREAMER OVERLOAD,1451940
+Spin Rhythm XD,1058830
+Minishoot' Adventures,1634860
+Retrowave,1239690
+Against the Storm,1336490
+WitchSpring R,1958220
+Disfigure,2083160
+(the) Gnorp Apologue,1473350
+Roboquest,692890
+Living With Sister: Monochrome Fantasy,2429860
+Bang-On Balls: Chronicles,1227650
+The Talos Principle 2,835960
+Half-Life: MMod,1761270
+Buckshot Roulette,2835570
+POSTAL: Brain Damaged,1359980
+Cassette Beasts,1321440
+Boneraiser Minions,1944570
+Palworld,1623730
+I Was a Teenage Exocolonist,1148760
+私のリアルは充実しすぎている フルボイス版,2106520
+OCTOPATH TRAVELER II,1971650
+Goat Simulator 3,850190
+Pages of Time: Prologue,2207540
+100 Capitalist Cats,2743080
+Loddlenaut,1644940
+"Knowledge, or know Lady",2786680
+Insomnia: Theater in the Head,2085360
+COMPOUND,615120
+Hades II,1145350
+Farmer Against Potatoes Idle,1535560
+Supraland Six Inches Under,1522870
+Aperture Desk Job,1902490
+Raft,648800
+Save Room - Organization Puzzle,1955330
+Contraband Police,756800
+Animal Revolt Battle Simulator,1215390
+Slime Rancher 2,1657630
+Spaceflight Simulator,1718870
+Love Is All Around,2322560
+Strange Horticulture,1574580
+Persona 3 Reload,2161700
+Crime Scene Cleaner: Prologue,2540100
+Cosmoteer: Starship Architect & Commander,799600
+DR LIVESEY ROM AND DEATH EDITION,2181930
+Symphony of War: The Nephilim Saga,1488200
+Melatonin,1585220
+Brick Rigs,552100
+Nightmare of Decay,1848450
+FAITH: The Unholy Trinity,1179080
+The Past Within,1515210
+Mortal Sin,1494810
+Empires of the Undergrowth,463530
+Judgment,2058180
+ELDEN RING,1245620
+Another Crab's Treasure,1887840
+Aimlabs,714010
+The Stanley Parable: Ultra Deluxe,1703340
+Supermarket Simulator,2670630
+Dinkum,1062520
+Cobalt Core,2179850
+Turbo Overkill,1328350
+Barotrauma,602960
+Soulstone Survivors: Prologue,2113430
+PARANORMASIGHT: The Seven Mysteries of Honjo,2106840
