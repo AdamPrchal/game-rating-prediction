@@ -1,53 +1,49 @@
-
-
 <article id="resultsAndEvaluation">
   <header style={{marginBottom: "1rem"}}>
-    ## Porovnání výsledků a vyhodnocení 🏁
+    ## Final Summary 🏁
   </header>
 
-Po důkladném vyhodnocení našeho aktuálního projektu a srovnání s nejlepším modelem z minulého projektu (RandomForestClassifier), jsme došli k několika zajímavým závěrům.
+In this project, we tried to understand the factors that make top-rated games different from worst-rated games based on user reviews. We used various analyses, like text preprocessing, sentiment analysis, and model building, to find key insights and patterns in the data.
 
-### Souhrn výsledků aktuálního modelu
+### Key Findings
 
-Náš model vykázal následující výsledky:
+1. **Bigram Comparison**:
+   - **Top-Rated Games**:
+     - Positive reviews often mentioned recommendations, saying the game is fun, engaging, and the best in its category. This showed the overall enjoyment and satisfaction players felt.
+     - Negative reviews pointed to specific issues within the game, focusing on particular problems even though the game had a high rating.
+   - **Worst-Rated Games**:
+     - Positive reviews were more general and sometimes mentioned issues like poor optimization, appearance, or functionality. These reviews suggested that any positive aspects were overshadowed by significant flaws.
+     - Negative reviews often discussed the drawbacks of early access, wasted money, and time, showing players' frustrations and disappointments.
 
-- **Přesnost (Accuracy)**: 0.67
-- **F-score**: 0.65
-- **ROC AUC Score**: 0.72
-- **Log Loss**: 0.71
-- **Matice záměn (Confusion Matrix)**:
-```
-[[735 274]
- [387 588]]
-```
+2. **Review Length and Sentiment**:
+   - **Top-Rated Games**: Positive reviews were usually shorter and more to the point, while negative reviews were longer and more detailed, indicating that players felt the need to explain the issues.
+   - **Worst-Rated Games**: Negative reviews were also longer and more detailed, showing significant dissatisfaction, while positive reviews were fewer and less enthusiastic.
 
-Z těchto výsledků vyplývá, že náš model má relativně vyváženou schopnost identifikace obou tříd, přičemž je mírně úspěšnější v rozpoznávání negativních případů (vyšší specificita) než pozitivních. Přesnost a F-score nad hodnotou 0.65 naznačují existenci alespoň nějaké spolehlivosti modelu, ačkoliv je zde prostor pro zlepšení.
+### Summary of Model Results
 
-<details>
-  <summary>Popis metrik 📝</summary>
+We built and evaluated several models to classify the reviews, using different text representation techniques.
 
-- **Přesnost (Accuracy):** Jak často model uhádl správnou třídu.
+- **Bag-of-Words (BoW)**:
+  - **Accuracy:** 85.09% without normalization; 81.73% with StandardScaler. Normalization did not help and might have caused a loss of information.
+  - **Iterations:** Converged after 216 iterations.
 
-- **F-score:** Měří, jak dobře model zvládá nacházet správné výsledky a jak dobře se vyhne špatným.
+- **TF-IDF**:
+  - **Accuracy:** 85.74% without normalization; 80.46% with StandardScaler. Like BoW, standardization reduced accuracy.
 
-- **ROC AUC score:** Ukazuje, jak dobře model dokáže rozlišit mezi třídami (v našem případě nad třídami nadprůměrná hra a podprůměrná hra)
+- **Word2Vec**:
+  - **Accuracy:** 58.30%. While lower in accuracy, Word2Vec offers deeper insights into word meanings and relationships in reviews.
 
-- **Log Loss:** Hodnota ukazující, jak moc se model mýlil - čím nižší, tím lépe.
+### Conclusion
 
-- **Matice záměn (Confusion Matrix):** Tabulka, která ukazuje, kolik předpovědí model správně nebo nesprávně klasifikoval. Postupně True Positive, True Negative, False Positive, False Negative.
-</details>
+Our experiments showed that:
+- Bag-of-Words and TF-IDF methods had higher accuracy compared to Word2Vec.
+- StandardScaler did not improve performance for BoW and TF-IDF and actually reduced accuracy.
+- Despite lower accuracy, Word2Vec gives valuable insights into the semantic relationships between words.
 
-### Srovnání s modelem z minulého projektu
+These findings help us understand the strengths and weaknesses of each text representation method for classifying game reviews. Future work can involve trying other text representation techniques and improving preprocessing steps to make the models better.
 
-Ve srovnání s RandomForestClassifierem z předchozího projektu, který dosáhl přesnosti 0.74 a F-score 0.74, je náš aktuální model méně přesný. Ačkoliv jsme použili totožný dataset a podobný postup předzpracování dat jako v předchozím projektu, náš současný model nedosáhl stejné úrovně výkonu jako RandomForestClassifier. Tento rozdíl výsledků může být připsán především rozdílům v modelovacích technikách a výběru hyperparametrů, což naznačuje, že i drobné nuance v přístupu k modelování mohou mít významný dopad na výsledky.
+### Final Thoughts
 
-### Možná vysvětlení pro rozdíly ve výkonu
+The project gave us a good understanding of what makes a game successful or not based on user reviews. By combining sentiment analysis with advanced text mining techniques, we were able to find meaningful conclusions that could help game developers and other people in the gaming industry.
 
-- **Omezení dat**: Nedostatečná velikost nebo rozmanitost dat mohou omezovat schopnost modelu správně se učit a generalizovat.
-- **Irrelevantní nebo chybějící proměnné**: Náš dataset může obsahovat proměnné, které nejsou důležité pro cílovou proměnnou, nebo nám mohou chybět klíčové informace pro přesnější předpovědi.
-- **Zkušenosti**: Možným faktorem také mohou být naše omezené zkušenosti.
-
-### Závěr
-
-Přestože náš aktuální model pro binární klasifikaci nepřekonal výkon modelu z minulého projektu, poskytl nám cenné poznatky pro budoucí práci.
 </article>

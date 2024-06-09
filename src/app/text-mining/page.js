@@ -1,7 +1,10 @@
 import Introduction from "../../chapters/text-mining/introduction.mdx";
-import DataPreprocessing from "../../chapters/text-mining/dataPreprocessing.mdx";
+import TextRepresentation from "../../chapters/text-mining/textRepresentation.mdx";
 import ResultsAndEvaluation from "../../chapters/text-mining/resultsAndEvaluation.mdx";
+import DataCollection from "../../chapters/text-mining/dataCollection.mdx";
+import SentimentAnalysis from "../../chapters/text-mining/sentimentAnalysis.mdx";
 import DataAnalysis from "../../chapters/text-mining/dataAnalysis.mdx";
+import Classification from "../../chapters/text-mining/classification.mdx";
 
 import { ScrollProgress } from "../../components/ScrollProgress";
 import { Navigation } from "../../components/Navigation";
@@ -17,20 +20,25 @@ export default function Home() {
       <Navigation
         links={[
           { id: "#introduction", label: "Introduction and Definition of Analysis Goal" },
+  { id: "#dataCollection", label: "Data Collection" },
+  { id: "#sentimentAnalysis", label: "Sentiment Analysis" },
   { id: "#dataAnalysis", label: "Data Analysis" },
-  { id: "#dataPreprocessing", label: "Data Preprocessing" },
-  { id: "#resultsAndEvaluation", label: "Results and Evaluation" },
+  { id: "#classification", label: "Classification" },
+  { id: "#resultsAndEvaluation", label: "Final Summary" },
         ]}
       />
-      <main className="container" style={{ maxWidth: "80ch" }}>
+      <main className="container prose" style={{ maxWidth: "80ch" }}>
         <hgroup>
           <h1>Text mining – Game reviews analysis</h1>
           <h3>Tomáš Lacina, Adam Prchal</h3>
         </hgroup>
 
         <Introduction />
+        <DataCollection />
+        <TextRepresentation />
+        <SentimentAnalysis />
         <DataAnalysis />
-        <DataPreprocessing />
+        <Classification />
         <ResultsAndEvaluation />
       </main>
     </>

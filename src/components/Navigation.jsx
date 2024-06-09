@@ -7,7 +7,7 @@ export const Navigation = ({ links }) => {
         <li role="list" dir="rtl">
           <details role="list">
             <summary aria-haspopup="listbox" role="button">
-              Jít na kapitolu
+             Menu
             </summary>
             <ul role="listbox">
               {links.map((item) => (

@@ -1,0 +1,32 @@
+<article id="sentimentAnalysis">
+    <header style={{marginBottom: "1rem"}}>
+        ## Sentiment Analysis 😊😡😐
+    </header>
+
+    Given the need for efficient and effective sentiment analysis, we used the VADER (Valence Aware Dictionary and sEntiment Reasoner) sentiment analysis tool.
+
+    ### Why VADER Sentiment Analysis?
+
+    VADER is a tool for analyzing sentiments, especially designed for social media. It works well for short texts and informal language, making it good for analyzing user reviews of games. VADER gives a compound score that shows the overall sentiment of the text. [(Source)](https://github.com/cjhutto/vaderSentiment)
+
+    ### Applying Sentiment Analysis to Review Data
+
+    We used the sentiment analysis process on both sets of review data: top-rated games and worst-rated games.
+
+    ### Results and Insights
+
+    - **Sentiment Distribution**: We looked at how many reviews were positive, negative, and neutral for both the top-rated and worst-rated games. We found that top-rated games had more neutral and positive reviews. The worst-rated games had a mix of sentiments, with more negative reviews.
+
+    - **Comparison of Sentiments**: By comparing the sentiment distributions, we saw that top-rated games generally have more positive reviews. On the other hand, the worst-rated games had a lot of negative reviews and many neutral reviews, showing mixed feelings among users.
+
+    This sentiment analysis helped us understand how users feel about different games.
+
+    <center>
+        <ImageWithCaption
+            src="/text-mining/sentiment-distribution.png"
+            caption="Distribution of sentiment scores for top-rated and worst-rated game reviews."
+            source=""
+        />
+    </center>
+
+</article>

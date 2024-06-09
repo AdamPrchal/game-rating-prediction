@@ -1,79 +1,89 @@
-
-
 <article id="dataAnalysis">
     <header style={{marginBottom: "1rem"}}>
-        ##  Analýza jednotlivých sloupců 📊
+        ## Data Analysis 🔍
     </header>
 
-    ### Hodnocení her
-    Nejdůležitější sloupec, na který se budeme v naší analýze zaměřovat je sloupec "rating" neboli hodnocení hry, protože chceme na základě zadaných parametrů odhadnout, jak bude nová hra hodnocena.
-    Histogram zobrazuje počet her a jejich jednotlivé hodnocení.
-    Jak je z histogramu vidět, tak naše data hodnocení mají dle statistiky přibližně normální (Gaussovo) rozdělení
-    <ImageWithCaption
-        src="/histogramHodnoceni.png"
-        caption="Histogram celkového hodnocení jednotlivých her"
-        source={""}
-    />
+    In this section, we look at the data we processed and the results from our sentiment analysis. Our goal is to find key insights and patterns that might show what makes top-rated games different from worst-rated games based on user reviews.
 
-    ### Beat count
-    Na následujícím histogramu vidíme počet her a počet hráčů, kteří ji hodnotili (napsali ke hře hodnocení).
-    Z histogramu vidíme, že nejmenší počet napsaných recenzí v rozmezí 30-80 má nejvíce her z našeho datasetu (4 149).
-    Poté narůstá počet hodnocení ale klesá počet her.
+    ### Overview
 
-    <ImageWithCaption
-        src="/histogramBeatCount.png"
-        caption="Histogram počtu hodnocení jednotlivých her"
-        source={""}
-    />
+    After processing the raw review data and doing sentiment analysis, we now compare the review content for both top-rated and worst-rated games. This helps us get an idea of what might cause positive and negative sentiments, and what could make a game successful or not.
 
-    ### Platformy
-    Sloupec platforms obsahuje informace o tom, kde si hru můžete zahrát – například PC, Xbox, Nintento Switch apod.
-    Přehled počtu her a jednotlivých platforem zobrazuje následující graf.
-    Poznámka - jedna hra může být vydána na více platformách.
+    ### Most Common Bigram Comparison
 
-    <ImageWithCaption
-        src="/platformyGraf.png"
-        caption="Přehled platforem, na kterých se dají hry hrát"
-        source={""}
-    />
-
+    First, we compared the most common bigrams (pairs of consecutive words) found in positive and negative reviews for both top-rated and worst-rated games. This analysis gives us a glimpse into common themes and phrases in user reviews, reflecting their experiences and opinions about the games.
 
     <center>
         <ImageWithCaption
-            src="/platformyPrehled1.png"
-            caption="Detailní rozpis počtu her na jednotlivých platformách 1. část"
-            source={""}
+            src="/text-mining/bigrams-sentiment-comparison.png"
+            caption="Most common bigrams in positive and negative reviews for top-rated and worst-rated games."
+            source=""
         />
-
-        <ImageWithCaption
-            src="/platformyPrehled2.png"
-            caption="Detailní rozpis počtu her na jednotlivých platformách 2. část"
-            source={""}
-        />
-
     </center>
 
-    ### Žánry
-    V našem datasetu máme následující rozložení žánrů:
+    ### Key Insights from Common Bigrams
 
-    - Action (13.8 %)
-    - Adventure (13 %)
-    - Ostatní (nazařazené) (11.4 %)
-    - Role-Playing (7.57 %)
-    - Shooter (5.38 %)
-    - Third-Person (5.18 %)
-    - First-Person (4.58 %)
+    - **Top-Rated Games (Positive Reviews)**: The bigrams often found in positive reviews of top-rated games include phrases like "feel like", "early access", "never end", and "highly recommend". These might show that players enjoy the game experience, spend a lot of time on it, and often recommend it to others. The frequent mention of "early access" suggests that players are generally satisfied with the development and improvements of these games over time.
 
-    Jelikož existuje nespočet dalších žánrů, které mají poměrné nízké procentuální zastoupení v našem datasetu, tak jen pro představu uvádíme následující koláčový graf.
+    - **Top-Rated Games (Negative Reviews)**: In negative reviews of top-rated games, phrases like "hate dragon", "dragon hate", and "hate shark" suggest that specific elements or characters in the game could have caused negative reactions, even though the overall sentiment towards the game remains positive. This indicates that even highly rated games have particular aspects that can be divisive or disliked by some players.
 
-    <ImageWithCaption
-        src="/zanry.png"
-        caption="Zastoupení jednotlivých žánrů v našem datasetu"
-        source={""}
-    />
+    - **Worst-Rated Games (Positive Reviews)**: Positive reviews for worst-rated games often include phrases like "feel like", "early access", and "single player". These phrases might indicate some positive aspects of the game, but they seem less specific and enthusiastic compared to the top-rated games. The presence of phrases like "negative review" even in positive comments suggests a more mixed or cautious approval.
 
+    - **Worst-Rated Games (Negative Reviews)**: Negative reviews for worst-rated games show phrases like "dont buy", "every time", and "negative review". These clearly express dissatisfaction and warn others not to buy the game, showing strong negative sentiments from the players. This suggests that players feel strongly enough about the poor quality of these games to actively discourage others from purchasing them.
 
+    ### Unique Bigram Comparison
 
+    Next, we analyzed unique bigrams that appear only in top-rated or worst-rated games. This helps us see specific themes or issues that are unique to each group.
 
+    <center>
+        <ImageWithCaption
+            src="/text-mining/unique-bigrams-sentiment-comparison.png"
+            caption="Unique bigrams in positive and negative reviews for top-rated and worst-rated games."
+            source=""
+        />
+    </center>
 
+    ### Key Insights from Unique Bigrams
+
+    - **Top-Rated Games (Positive Reviews)**: Unique bigrams in positive reviews of top-rated games include phrases like "never end", "love love", "highly recommend", and "steam deck". These phrases suggest strong appreciation for the game, elements that players love, and specific recommendations. This indicates that players are not only enjoying the game but are also enthusiastic about sharing their positive experiences with others.
+
+    - **Top-Rated Games (Negative Reviews)**: Unique bigrams in negative reviews of top-rated games include phrases like "hate dragon", "dragon hate", and "shark hate". These suggest specific characters or elements that players dislike, even in otherwise well-received games. This shows that even popular games can have polarizing features that might detract from the overall experience for some players.
+
+    - **Worst-Rated Games (Positive Reviews)**: Unique bigrams in positive reviews of worst-rated games include phrases like "single player", "negative review", and "full price". These might show that while there are some positive aspects, they are often overshadowed by other negative comments. This suggests that any positive feedback is often accompanied by caveats or reminders of the game's flaws.
+
+    - **Worst-Rated Games (Negative Reviews)**: Unique bigrams in negative reviews of worst-rated games include phrases like "dont buy", "negative review", and "waste money". These clearly show strong dissatisfaction and regret from players. This highlights a significant level of frustration and disappointment, leading players to strongly advise against purchasing the game.
+
+    This comparison of unique bigrams provides a deeper understanding of the specific elements and themes that players talk about in their reviews. It highlights what is unique to top-rated and worst-rated games, giving us a clearer picture of what might contribute to a game's success or failure.
+
+    ### Review Length and Sentiment
+
+    We also analyzed the relationship between the length of reviews and the sentiment expressed in them. This analysis helps us understand if there is any pattern in how the length of a review relates to its positivity or negativity.
+
+    <center>
+        <ImageWithCaption
+            src="/text-mining/review-length-sentiment.png"
+            caption="Review length and sentiment for all reviews."
+            source=""
+        />
+    </center>
+
+    ### Key Insights from Review Length and Sentiment
+
+    - **Top-Rated Games**: Reviews for top-rated games tend to be shorter when positive and longer when negative. Positive reviews often quickly praise the game, while negative reviews might elaborate more on the issues. This suggests that satisfied players tend to express their positive feelings concisely, while dissatisfied players feel the need to provide detailed feedback on what they did not like. Additionally, the clustering of positive reviews at the top indicates a general satisfaction with these games.
+
+    - **Worst-Rated Games**: Reviews for worst-rated games show a similar pattern, where negative reviews are longer and more detailed, indicating that dissatisfied players might feel the need to explain their frustrations more thoroughly. The concentration of negative reviews at the bottom highlights a consistent dissatisfaction among players. Furthermore, the spread of review lengths for negative sentiments indicates that players often go into detail about their negative experiences, while positive reviews, although fewer, tend to be shorter and to the point.
+
+    The detailed nature of negative reviews for both types of games suggests that players are more motivated to articulate their grievances in detail, which can be valuable feedback for game developers looking to improve their products.
+
+    ## Summary
+
+    The comparison of bigrams revealed distinct patterns in positive and negative reviews for both top-rated and worst-rated games.
+
+    For positive reviews of top-rated games, players frequently mentioned recommendations, praising the game as fun, engaging, and the best in its category. These reviews highlighted the overall enjoyment and satisfaction players felt while playing these games.
+
+    In contrast, negative reviews of top-rated games often pointed to specific issues within the game. These reviews focused on particular problems or elements that detracted from the overall experience, despite the game's high rating.
+
+    Positive reviews for worst-rated games tended to be more general, occasionally mentioning issues such as poor optimization, appearance, or functionality. These reviews showed that while there might be some positive aspects, they were often overshadowed by significant flaws.
+
+    Negative reviews of worst-rated games commonly discussed the drawbacks of early access, highlighting wasted money and time. These reviews strongly conveyed players' frustrations and disappointments with the game.
 </article>

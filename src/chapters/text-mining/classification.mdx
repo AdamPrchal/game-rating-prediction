@@ -1,0 +1,135 @@
+<article id="classification">
+    <header style={{marginBottom: "1rem"}}>
+        ## Classification 
+    </header>
+
+    In this chapter, we explore various models for the classification of game reviews. Our objective is to determine whether a review is classified as review of good or bad game. We have implemented three different text representation methods: Bag-of-Words (BoW), TF-IDF, and Word2Vec. Each method captures different aspects of the textual data, and their performance is measured in terms of accuracy.
+
+    ### Bag-of-Words (BoW)
+
+    Bag-of-Words (BoW) is a simple method used to represent text in numerical form. It is a basic technique often used in text analysis and machine learning.
+
+    #### How does it work?
+
+    - **Tokenization:** First, we split the text into individual words (called tokens). For example, the sentence "Hello world" would be split into the words ["Hello", "world"].
+
+    - **Create a vocabulary:** We create a list of all unique words that appear in the text. For example, if we have two sentences "Hello world" and "Hello everyone," our vocabulary would be ["Hello", "world", "everyone"].
+
+    - **Create vectors:** For each sentence, we create a vector that contains the counts of each word from the vocabulary. If the sentence contains the word, the count increases; if not, the count is 0. For example, for the sentence "Hello world," the vector would be [1, 1, 0], because "Hello" and "world" each appear once, and "everyone" does not appear.
+
+    #### Results
+
+    The results of our model using the Bag-of-Words (BoW) approach show the following:
+
+      - **Accuracy with BoW:** The model achieved an accuracy of 85.09 % using the basic Bag-of-Words representation. This means the model correctly classified 78.19% of the reviews.
+      - **Accuracy with BoW and StandardScaler:** When we used StandardScaler to normalize the data, the model's accuracy dropped to 81.73 %. This may indicate that normalization did not help or possibly caused a loss of information in the data.
+
+    #### WHY?
+
+    Standardizing data using StandardScaler did not improve the model's performance in our case. This may be due to the fact that the Bag-of-Words representation creates very sparse matrices, where standardization can cause a loss of information about word frequencies. Additionally, standardization can remove important information about the absolute frequency of words, which is crucial for classification. Alternative scaling methods or better text preprocessing could lead to better results.
+
+    #### Number of iterations for BoW
+
+    The model converged after 216 iterations. This means the model needed 216 iterations to reach an optimal solution.
+
+
+    ### TF-IDF
+
+    TF-IDF is a more advanced method for text representation than Bag-of-Words. This method takes into account not only how often words appear in a single document (Term Frequency, TF) but also how often words appear across the entire collection of documents (Inverse Document Frequency, IDF).
+
+    #### How does it work?
+
+    1. **Term Frequency (TF):**
+      - Term Frequency is the number of times a word appears relative to the total number of words in the document. It is calculated as:
+
+        ![TF formula](https://latex.codecogs.com/svg.image?\text{TF}(t,d)=\frac{\text{number&space;of&space;occurrences&space;of&space;word}t\text{in&space;document}d}{\text{total&space;number&space;of&space;words&space;in&space;document}d})
+
+      - For example, if the word "hello" appears three times in a document with 100 words, the TF will be 0.03.
+
+    2. **Inverse Document Frequency (IDF):**
+      - IDF measures the importance of a word. If a word appears in many documents, its importance is lower. It is calculated as:
+
+        ![IDF formula](https://latex.codecogs.com/svg.latex?%5Ctext%7BIDF%7D%28t%2C%20D%29%20%3D%20%5Clog%20%5Cleft%28%20%5Cfrac%7B%5Ctext%7Btotal%20number%20of%20documents%20%7D%20D%7D%7B%5Ctext%7Bnumber%20of%20documents%20containing%20the%20word%20%7D%20t%7D%20%5Cright%29)
+
+      - For example, if the word "hello" appears in 2 out of 10 documents, the IDF will be \(\log(10/2) = 0.7\).
+
+    3. **TF-IDF Score:**
+      - TF-IDF is the product of TF and IDF. This takes into account both the frequency of the word in the document and its rarity across the entire collection of documents. It is calculated as:
+
+        ![TF-IDF formula](https://latex.codecogs.com/svg.latex?%5Ctext%7BTF-IDF%7D%28t%2C%20d%2C%20D%29%20%3D%20%5Ctext%7BTF%7D%28t%2C%20d%29%20%5Ctimes%20%5Ctext%7BIDF%7D%28t%2C%20D%29)
+
+    ### Results
+
+    The results of our model using the TF-IDF approach show the following:
+
+    - **Accuracy with TF-IDF without StandardScaler:** The model achieved an accuracy of 85.74 % using the basic TF-IDF representation without standardization. This means the model correctly classified 77.80% of the reviews.
+    - **Accuracy with TF-IDF and StandardScaler:** When we used StandardScaler to normalize the data, the model's accuracy dropped to 80.46 %.Similar to Bag-of-Words, standardization did not help and might have caused a loss of information in the data.
+
+    #### WHY?
+
+    - It is a similar to BoW method
+    - **Sparse data:** TF-IDF also creates very sparse matrices. Standardizing these matrices can cause a loss of important information about word frequencies.
+    - **Data distribution:** Standard Scaler assumes that data is normally distributed. However, TF-IDF values can have different distributions, which can negatively affect standardization.
+    - **Loss of relative frequency:** Standardization can remove important information about the relative frequency of words, which is crucial for TF-IDF.
+
+    These results suggest that the TF-IDF method works well for our task of classifying game reviews, but standardizing the data did not improve the results in this case.
+
+    ### Word2Vec
+
+    Word2Vec is an advanced method for text representation. It creates vector (numerical) representations of words that capture semantic relationships between them. This means that words that have similar meanings or appear in the same context will have similar vector representations.
+
+    #### How does it work?
+
+    1. **Training on context:**
+      - The Word2Vec model learns based on the context in which words occur. There are two main architectures: CBOW (Continuous Bag of Words) and Skip-gram.
+      - **CBOW** predicts a word based on its context (surrounding words).
+      - **Skip-gram** predicts context words based on a given word.
+
+    2. **Vector representation:**
+      - Each word is represented as a vector in a high-dimensional space. These vectors are trained to capture the semantic relationships between words.
+
+    3. **Semantic relationships:**
+      - Vectors capture relationships such as "king - man + woman = queen." This means that the vectors for "king," "man," "woman," and "queen" will be close to each other in the space and maintain these semantic relationships.
+
+    #### Example:
+    Let's imagine a simple text: 
+    - "king, queen, man, woman, castle, throne"
+
+    Word2Vec creates vector representations of these words that capture the similarity that "king" and "queen" are similar because they both have a relationship to "throne" and "castle."
+
+    ### Results
+    The results of our model using Word2Vec show the following:
+
+    - **Accuracy with Word2Vec:** The model achieved an accuracy of 58.30 %. This means the model correctly classified 58.30% of the reviews.
+    - This result suggests that Word2Vec is capable of capturing semantic relationships between words and provides a reasonable degree of accuracy. Although the accuracy is lower than some simpler methods, Word2Vec offers a deeper understanding of the meanings of words in the context of reviews.
+
+    ## Summary of Model Results
+
+    The performance of each model is summarized below, highlighting their accuracy and key observations.
+
+    ### Bag-of-Words (BoW)
+
+    - **Accuracy with BoW:** The model achieved an accuracy of 85.09 %. This means the model correctly classified 85.09 % of the reviews.
+    - **Accuracy with BoW and StandardScaler:** When we used StandardScaler to normalize the data, the model's accuracy dropped to 81.73 %. This indicates that normalization did not help and possibly caused a loss of information in the data.
+    - **Number of iterations for BoW:** The model converged after 216 iterations, reaching an optimal solution.
+
+    ### TF-IDF
+
+    - **Accuracy with TF-IDF without StandardScaler:** The model achieved an accuracy of 85.74 %. This means the model correctly classified 85.74 % of the reviews.
+    - **Accuracy with TF-IDF and StandardScaler:** When we used StandardScaler to normalize the data, the model's accuracy dropped to 80.46 %. Similar to Bag-of-Words, standardization did not help and might have caused a loss of information in the data.
+
+    ### Word2Vec
+
+    - **Accuracy with Word2Vec:** The model achieved an accuracy of 58.30 %. This means the model correctly classified 58.30 % of the reviews.
+    - Although the accuracy is lower than some simpler methods, Word2Vec offers a deeper understanding of the meanings of words in the context of reviews.
+
+    ## Conclusion
+
+    From our experiments, we observe that:
+
+    - Bag-of-Words and TF-IDF methods achieved higher accuracy compared to Word2Vec.
+    - Standardization using StandardScaler generally did not improve the performance for BoW and TF-IDF methods and in fact, reduced the accuracy.
+    - Word2Vec, despite having lower accuracy, provides valuable insights into the semantic relationships between words, which can be beneficial for more complex tasks.
+
+    These findings help us understand the strengths and limitations of each text representation method in the context of classifying game reviews. Future work can involve experimenting with other text representation techniques and improving preprocessing steps to enhance model performance.
+</article>

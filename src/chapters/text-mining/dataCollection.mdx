@@ -1,0 +1,40 @@
+<article id="dataCollection">
+    <header style={{marginBottom: "1rem"}}>
+        ## Data Collection 📊
+    </header>
+
+    In this project, we used data from SteamDB to find and classify the highest-rated and lowest-rated games from the past three years. Here are the steps we followed for our data collection:
+
+    ### Data Source and Criteria
+
+    1. **Using SteamDB**: We got data from SteamDB, which is a big database for Steam games. We collected the top 200 best-rated and 200 worst-rated games from the last three years. This way, we based our analysis on recent data.
+
+    2. **Selecting Key Information**: While getting data, we collected important details like game names and their Steam IDs. These IDs were important for getting more data later.
+
+    ### Fetching Steam Reviews
+
+    To analyze game reviews from Steam, we needed user reviews for the games we identified using their Steam IDs. Here is how we got these reviews:
+
+    1. **Collecting Reviews**: Using the Steam API, we got user reviews for each game we found on SteamDB. This included the content of reviews, dates, and user ratings.
+
+    2. **Ensuring Data Quality**: We made sure the reviews we collected were complete and from different dates to give us a good mix of user opinions.
+
+    ### Summary of Steps
+
+    1. **Scraping SteamDB**: We started by getting a list of games and their Steam IDs from SteamDB based on their ratings over the past three years.
+    
+    2. **Review Collection**: With the Steam IDs, we used the Steam API to get user reviews for each game. This gave us a rich dataset for text mining and sentiment analysis.
+
+    ### Statistics
+
+    - **Number of Reviews Collected**: We collected a total of 32,000 reviews for the top-rated games and 23,000 reviews for the worst-rated games.
+
+    <center>
+        <ImageWithCaption
+            src="/text-mining/dataset_overview.png"
+            caption="Example rows of initial dataset."
+            source=""
+        />
+    </center>
+
+</article>

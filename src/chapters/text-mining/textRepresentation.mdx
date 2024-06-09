@@ -1,0 +1,42 @@
+<article id="textRepresentation">
+    <header style={{marginBottom: "1rem"}}>
+        ## Text Representation 📝
+    </header>
+
+    In this part of the project, we changed raw text data into formats suitable for analysis. We used several preprocessing steps like tokenization, lemmatization, and vectorization. We worked with two sets of data: reviews of the worst-rated games and reviews of the top-rated games. Here are the steps we used:
+
+    V tomto projektu jsme upravili naše přístupy k předzpracování dat, aby lépe odpovídaly potřebám neuronových sítí a zvýšily přesnost modelu.
+
+    ### Preprocessing Steps
+
+    1. **Tokenization**: We started by splitting the text into individual words (tokens). This step is important because it breaks down the text into smaller pieces.
+
+    2. **Lowercasing and Punctuation Removal**: To make the data uniform, we converted all text to lowercase and removed punctuation marks. This helps reduce noise in the data and focuses on important words.
+
+    3. **Stop Words Removal**: Common words that do not carry much meaning (like "the", "is", "and") were removed using a list of English stop words. This step helps us focus on the more important words in the text.
+
+    4. **Lemmatization**: Words were reduced to their base form using a lemmatizer. For example, "running" was changed to "run". This step helps make sure that different forms of a word are treated as the same word.
+
+    5. **Removing Repeated Words**: To avoid bias from repeated words, we set a rule to remove words that appeared more than a certain number of times in a row (like three times). This makes sure that no single word affects the analysis too much.
+
+    6. **Replacing Game Names**: To make sure that game names did not affect the sentiment analysis, we replaced game names in the reviews with the word "game". This helps us focus on the content of the reviews rather than on the game names.
+
+    ### Visualizing the Preprocessed Data
+
+    <center>
+        <ImageWithCaption
+            src="/text-mining/top-game-reviews-cloud.png"
+            caption="Word Cloud representing the most common words in Top game reviews."
+            source=""
+        />
+    </center>
+
+     <center>
+        <ImageWithCaption
+            src="/text-mining/worst-game-reviews-cloud.png"
+            caption="Word Cloud representing the most common words in Worst game reviews."
+            source=""
+        />
+    </center>
+
+</article>
